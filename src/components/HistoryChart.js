@@ -1,44 +1,27 @@
 import Highcharts from 'highcharts'
 import HighchartsReact from 'highcharts-react-official'
 import { useEffect, useState } from 'react'
-import { graphData } from '../utilities/sampleJson'
+import { getApiData } from '../utilities/apiUtility'
+import { coinName, getApiEndpoints, graphRanges } from '../utilities/appConstants'
+import { getGraphOptions } from '../utilities/graphDataUtil'
 
-export default function HistoryChart({ data }) {
+export default function HistoryChart() {
     const [activeRange, setActiveRange] = useState(0),
-        [options, setOptions] = useState({}),
-        graphRanges = ["1D", "1W", "1M", "3M", "1Y", "5Y", "Max"],
-        dates = graphData.map(data => new Date(data.period).toDateString()),
-        points = graphData.map(data => parseFloat(data.high));
+        [options, setOptions] = useState({});
 
     useEffect(() => {
-        setOptions({
-            title: { text: '' },
-            tooltip: {
-                formatter() {
-                    return `
-                    <strong>${this.y}</strong>
-                    <br />
-                    ${this.x}
-                    `
-                }
-            },
-            credits: { enabled: false },
-            chart: {
-                height: 350,
-                type: 'line'
-            },
-            xAxis: {
-                categories: dates,
-                labels: {
-                    rotation: -45,
-                    step: 4
-                }
-            },
-            series: [{
-                showInLegend: false,
-                data: points
-            }]
-        })
+        const params = {
+            exchange: 'poloniex',
+            interval: 'h8',
+            baseId: 'ethereum',
+            quoteId: coinName,
+            start: 1530720000000,
+            end: 1531670400000
+        }
+        getApiData(getApiEndpoints('graphData'), params)
+            .then(resp => {
+                setOptions(getGraphOptions(resp))
+            })
     }, [activeRange])
 
     return (

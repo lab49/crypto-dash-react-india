@@ -17,3 +17,15 @@ Graph showing that currency's performance over time -  We need Api that provide 
 Buy Button
 	
 Last list of confirmed trades. Blotter that showing real time status of trade lifecycle. We can mock this.
+
+
+# Getting Started
+
+First, install all the dependencies and then run the development server:
+
+```bash
+npm i
+npm run dev
+```
+
+Open [http://localhost:3000/](http://localhost:3000/) in the web browser to see the result

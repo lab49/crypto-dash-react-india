@@ -1,4 +1,5 @@
 import { ArrowDownRight, ArrowUpRight } from 'react-bootstrap-icons';
+import { roundDecimalPlaces } from '../utilities/commonUtility';
 
 export default function Header({ data }) {
     const { name, symbol, price, diff, percentage } = data;
@@ -12,7 +13,7 @@ export default function Header({ data }) {
                 {name}
             </div>
             <div className="h3">
-                ${price ? parseFloat(price).toFixed(2) : ""}
+                ${roundDecimalPlaces(price, 2)}
             </div>
             <div className="h6">
                 {
@@ -21,7 +22,7 @@ export default function Header({ data }) {
                         <ArrowDownRight className="text-danger" size={16} />
                 }
                 <span className={`d-inline-block mx-2 ${diff < 0 ? "text-danger" : "text-success"}`}>
-                    {`$${Math.abs(diff)} (${percentage}%)`}
+                    {`$${Math.abs(roundDecimalPlaces(diff, 2))} (${roundDecimalPlaces(percentage, 2)}%)`}
                 </span>
                 <span className="d-inline-block">Today</span>
             </div>

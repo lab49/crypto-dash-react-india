@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { roundDecimalPlaces } from '../utilities/commonUtility';
 
 export default function Trade({ volume, price = 0 }) {
     const [showVolumne, setShowVolume] = useState(true),
@@ -20,7 +21,7 @@ export default function Trade({ volume, price = 0 }) {
                             <div>Today's Volume</div>
                             <div>
                                 <strong>
-                                    {volume ? parseFloat(volume).toFixed(2) : ""}
+                                    {roundDecimalPlaces(volume, 4)}
                                 </strong>
                             </div>
                         </div>
