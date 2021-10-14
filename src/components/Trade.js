@@ -1,14 +1,37 @@
-import { useState } from "react"
+import { useState } from 'react'
 import { roundDecimalPlaces } from '../utilities/commonUtility';
+import { getDataFromLocalStorage, setDataToLocalStorage } from '../utilities/localStorageUtil';
 
-export default function Trade({ volume, price = 0 }) {
+const Trade = ({ coinName, volume, price = 0 }) => {
     const [showVolumne, setShowVolume] = useState(true),
         [coinVolumne, setCoinVolume] = useState("");
+    let coinPrice = (coinVolumne * price).toFixed(2);
 
     function changeCoinVolume(event) {
         const { value } = event.target;
 
         setCoinVolume(value);
+    }
+
+    function buyCoin() {
+        if(!coinVolumne) return;
+
+        const tradeData = {
+            date: new Date().toUTCString(),
+            coin: coinName,
+            volume: coinVolumne,
+            price: coinPrice
+        }
+        let tradeHistory = getDataFromLocalStorage('coinTradeHistory');
+
+        if (Array.isArray(tradeHistory)) {
+            tradeHistory.push(tradeData)
+        } else {
+            tradeHistory = [tradeData]
+        }
+
+        setDataToLocalStorage('coinTradeHistory', tradeHistory)
+        setShowVolume(false)
     }
 
     return (
@@ -49,13 +72,13 @@ export default function Trade({ volume, price = 0 }) {
                                 className="form-control"
                                 placeholder="Value"
                                 disabled={true}
-                                value={(coinVolumne * price).toFixed(2)}
+                                value={`$ ${coinPrice}`}
                             />
                         </div>
                         <div className="col-3">
                             <button
                                 className="btn btn-primary btn-lg"
-                                onClick={() => setShowVolume(true)}
+                                onClick={buyCoin}
                             >
                                 Buy
                             </button>
@@ -66,3 +89,5 @@ export default function Trade({ volume, price = 0 }) {
         </div>
     )
 }
+
+export default Trade;

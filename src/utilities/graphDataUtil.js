@@ -1,3 +1,5 @@
+import { apiNames, dayUnits } from './appConstants'
+
 let graphOptions = {
     title: { text: '' },
     tooltip: {
@@ -12,7 +14,7 @@ let graphOptions = {
     credits: { enabled: false },
     chart: { height: 350, type: 'line' },
     xAxis: {
-        labels: { rotation: -45, step: 4 }
+        labels: { rotation: -45 }
     }
 }
 
@@ -32,11 +34,21 @@ const getGraphColor = (graphData, key) => {
     }
 }
 
+export const getGraphInterval = (unit) => {
+    switch (unit) {
+        case dayUnits.YEARS: return 'w1';
+        case dayUnits.MONTHS: return 'd1';
+        case dayUnits.WEEKS: return 'h8';
+        default: return 'h1';
+    }
+}
+
 export const getGraphOptions = (resp) => {
     const graphData = resp?.data?.data;
 
     if (graphData) {
         graphOptions.xAxis.categories = getGraphPeriods(graphData, 'period')
+        graphOptions.xAxis.labels.step = Math.ceil(graphData.length / 10);
         graphOptions.series = [{
             showInLegend: false,
             data: getGraphDataPoints(graphData, 'high')
@@ -46,7 +58,7 @@ export const getGraphOptions = (resp) => {
                 color: getGraphColor(graphData, 'high')
             }
         }
-        return graphOptions
+        return { ...graphOptions };
     } else {
         return {}
     }

@@ -1,8 +1,22 @@
+import { useEffect, useState } from 'react';
 import { ArrowDownRight, ArrowUpRight } from 'react-bootstrap-icons';
-import { roundDecimalPlaces } from '../utilities/commonUtility';
+import { coinName } from '../utilities/appConstants'
+import { getApiEndpoints, roundDecimalPlaces } from '../utilities/commonUtility';
 
-export default function Header({ data }) {
-    const { name, symbol, price, diff, percentage } = data;
+const Header = ({ coinInfo }) => {
+    const { name, symbol, diff, percentage } = coinInfo,
+        [coinPrice, setCoinPrice] = useState(0);
+
+    useEffect(() => {
+        const pricesWs = new WebSocket(getApiEndpoints('assetPrice', { coinName }));
+        pricesWs.onmessage = function (msg) {
+            setCoinPrice(JSON.parse(msg.data)[coinName])
+        }
+
+        return () => {
+            pricesWs.close()
+        }
+    }, [])
 
     return (
         <header>
@@ -13,7 +27,7 @@ export default function Header({ data }) {
                 {name}
             </div>
             <div className="h3">
-                ${roundDecimalPlaces(price, 2)}
+                ${roundDecimalPlaces(coinPrice, 2)}
             </div>
             <div className="h6">
                 {
@@ -29,3 +43,5 @@ export default function Header({ data }) {
         </header>
     )
 }
+
+export default Header;

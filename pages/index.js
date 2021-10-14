@@ -3,20 +3,15 @@ import Header from '../src/components/Header'
 import HistoryChart from '../src/components/HistoryChart'
 import Trade from '../src/components/Trade'
 import Orders from '../src/components/Orders'
-import { coinName, getApiEndpoints } from '../src/utilities/appConstants'
+import { coinName } from '../src/utilities/appConstants'
 import { getApiData } from '../src/utilities/apiUtility'
+import { getApiEndpoints } from '../src/utilities/commonUtility'
 
-export default function Home() {
+const Home = () => {
 
-  const [coinInfo, setCoinInfo] = useState({}),
-    [coinPrice, setCoinPrice] = useState(0);
+  const [coinInfo, setCoinInfo] = useState({});
 
   useEffect(() => {
-    const pricesWs = new WebSocket(getApiEndpoints('assetPrice', { coinName }));
-    pricesWs.onmessage = function (msg) {
-      setCoinPrice(JSON.parse(msg.data)[coinName])
-    }
-
     getApiData(getApiEndpoints('assetInfo', { coinName }))
       .then(resp => {
         const asset = resp?.data?.data
@@ -31,29 +26,26 @@ export default function Home() {
           })
         }
       })
-
-    return () => {
-      pricesWs.close()
-    }
   }, [])
 
   return (
     <div className="p-3">
-      <Header
-        data={{ ...coinInfo, price: coinPrice }}
-      />
+      <Header coinInfo={coinInfo} />
       <HistoryChart />
       <div className="row justify-content-md-between mt-4">
-        <div className="col-md-5">
+        <div className="col-lg-4">
           <Trade
+            coinName={coinInfo.name}
             volume={coinInfo.volume}
             price={coinInfo.priceUsd}
           />
         </div>
-        <div className="col-md-5">
+        <div className="col-lg-6">
           <Orders />
         </div>
       </div>
     </div>
   )
 }
+
+export default Home;

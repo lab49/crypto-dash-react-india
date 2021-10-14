@@ -2,22 +2,25 @@ import Highcharts from 'highcharts'
 import HighchartsReact from 'highcharts-react-official'
 import { useEffect, useState } from 'react'
 import { getApiData } from '../utilities/apiUtility'
-import { coinName, getApiEndpoints, graphRanges } from '../utilities/appConstants'
-import { getGraphOptions } from '../utilities/graphDataUtil'
+import { coinName, graphRanges } from '../utilities/appConstants'
+import { getGraphInterval, getGraphOptions } from '../utilities/graphDataUtil'
+import { getApiEndpoints } from '../utilities/commonUtility'
+import { getCurrentTimestamp, getTimestampFromDuration } from '../utilities/dateTimeUtil'
 
-export default function HistoryChart() {
+const HistoryChart = () => {
     const [activeRange, setActiveRange] = useState(0),
         [options, setOptions] = useState({});
 
     useEffect(() => {
-        const params = {
-            exchange: 'poloniex',
-            interval: 'h8',
-            baseId: 'ethereum',
-            quoteId: coinName,
-            start: 1530720000000,
-            end: 1531670400000
-        }
+        const { value, unit } = graphRanges[activeRange],
+            params = {
+                exchange: 'poloniex',
+                interval: getGraphInterval(unit),
+                baseId: 'ethereum',
+                quoteId: coinName,
+                start: getTimestampFromDuration('sub', value, unit),
+                end: getCurrentTimestamp()
+            }
         getApiData(getApiEndpoints('graphData'), params)
             .then(resp => {
                 setOptions(getGraphOptions(resp))
@@ -32,13 +35,13 @@ export default function HistoryChart() {
             />
             <div className="d-flex justify-content-around">
                 {
-                    graphRanges.map((range, index) => (
+                    graphRanges.map(({ label }, index) => (
                         <button
-                            key={range}
+                            key={label}
                             className={`btn btn-outline-primary ${index === activeRange ? "active" : ""}`}
                             onClick={() => setActiveRange(index)}
                         >
-                            {range}
+                            {label}
                         </button>
                     ))
                 }
@@ -46,3 +49,5 @@ export default function HistoryChart() {
         </div>
     )
 }
+
+export default HistoryChart;
