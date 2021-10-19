@@ -1,11 +1,10 @@
 import { useState } from 'react'
 import { roundDecimalPlaces } from '../utilities/commonUtility';
-import { getDataFromLocalStorage, setDataToLocalStorage } from '../utilities/localStorageUtil';
 
-const Trade = ({ name, volume, price = 0 }) => {
+const Trade = ({ name, volume, price = 0, updateTradeHistory }) => {
     const [showVolumne, setShowVolume] = useState(true),
         [cryptoCurrencyVolumne, setCryptoCurrencyVolume] = useState("");
-    let coinPrice = (cryptoCurrencyVolumne * price).toFixed(2);
+    let cryptoCurrencyPrice = (cryptoCurrencyVolumne * price).toFixed(2);
 
     function changeCurrencyVolume(event) {
         const { value } = event.target;
@@ -13,46 +12,19 @@ const Trade = ({ name, volume, price = 0 }) => {
         setCryptoCurrencyVolume(value);
     }
 
-    function buyCoin() {
+    function buyCryptoCurrency() {
         if(!cryptoCurrencyVolumne) return;
 
         const tradeData = {
             date: new Date().toUTCString(),
             currency: name,
             volume: cryptoCurrencyVolumne,
-            price: coinPrice
-        }
-        let tradeHistory = getDataFromLocalStorage('coinTradeHistory');
-
-        if (Array.isArray(tradeHistory)) {
-            tradeHistory.push(tradeData)
-        } else {
-            tradeHistory = [tradeData]
+            price: cryptoCurrencyPrice
         }
 
-        setDataToLocalStorage('coinTradeHistory', tradeHistory)
+        updateTradeHistory(tradeData)
         setShowVolume(true)
-    }
-
-    function buyCoin() {
-        if(!coinVolumne) return;
-
-        const tradeData = {
-            date: new Date().toUTCString(),
-            coin: coinName,
-            volume: coinVolumne,
-            price: coinPrice
-        }
-        let tradeHistory = getDataFromLocalStorage('coinTradeHistory');
-
-        if (Array.isArray(tradeHistory)) {
-            tradeHistory.push(tradeData)
-        } else {
-            tradeHistory = [tradeData]
-        }
-
-        setDataToLocalStorage('coinTradeHistory', tradeHistory)
-        setShowVolume(false)
+        setCryptoCurrencyVolume("")
     }
 
     return (
@@ -84,7 +56,7 @@ const Trade = ({ name, volume, price = 0 }) => {
                             <input
                                 type="text"
                                 className="form-control"
-                                placeholder="Coins"
+                                placeholder="Currency Volume"
                                 value={cryptoCurrencyVolumne}
                                 onChange={changeCurrencyVolume}
                             />
@@ -93,13 +65,13 @@ const Trade = ({ name, volume, price = 0 }) => {
                                 className="form-control"
                                 placeholder="Value"
                                 disabled={true}
-                                value={`$ ${coinPrice}`}
+                                value={`$ ${cryptoCurrencyPrice}`}
                             />
                         </div>
                         <div className="col-3">
                             <button
                                 className="btn btn-primary btn-lg"
-                                onClick={buyCoin}
+                                onClick={buyCryptoCurrency}
                             >
                                 Buy
                             </button>

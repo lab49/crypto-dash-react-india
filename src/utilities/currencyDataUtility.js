@@ -1,6 +1,6 @@
-export const getCryptoCurrencyPrice = (resp, coinName) => {
-    const coinPricesObj = JSON.parse(resp.data);
-    return coinPricesObj[coinName];
+export const getCryptoCurrencyPrice = (resp, currencyName) => {
+    const cryptoCurrencyPrices = JSON.parse(resp.data);
+    return cryptoCurrencyPrices[currencyName];
 }
 
 export const formatCryptoCurrencyInfo = (asset) => ({

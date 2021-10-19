@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { ArrowDownRight, ArrowUpRight } from 'react-bootstrap-icons';
-import { coinName } from '../constants/appConstants'
+import { currencyName } from '../constants/appConstants'
 import { apiNames } from '../constants/endpointConstants';
 import { closeWebSocket, initializeWebSocket } from '../services/webSocketService';
 import { getCryptoCurrencyPrice } from '../utilities/currencyDataUtility';
@@ -11,11 +11,11 @@ const Header = ({ cryptoCurrencyInfo }) => {
         [cryptoCurrencyPrice, setCryptoCurrencyPrice] = useState(0);
 
     useEffect(() => {
-        const priceInfoEndpoint = getApiEndpoints(apiNames.PRICE_DETAILS, { coinName }),
+        const priceInfoEndpoint = getApiEndpoints(apiNames.PRICE_DETAILS, { currencyName }),
             pricesWs = initializeWebSocket(priceInfoEndpoint);
 
         pricesWs.onmessage = function (msg) {
-            const price = getCryptoCurrencyPrice(msg, coinName)
+            const price = getCryptoCurrencyPrice(msg, currencyName)
             setCryptoCurrencyPrice(price);
         }
 

@@ -8,11 +8,15 @@ export const graphRanges = [
     { label: '3Y', value: 3, unit: 'years' }
 ];
 
-export const coinName = 'bitcoin';
+export const currencyName = 'bitcoin';
 
 export const dayUnits = {
     YEARS: 'years',
     MONTHS: 'months',
     WEEKS: 'weeks',
     DAYS: 'days'
+}
+
+export const localStorageKey ={
+   CURRENCY_TRADE_HISTORY : 'currencyTradeHistory'
 }
