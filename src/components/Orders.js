@@ -10,7 +10,7 @@ const Orders = () => {
         tradeHistory = getDataFromLocalStorage('coinTradeHistory'),
         columnDefs = [
             { headerName: 'Date', field: 'date', sortable: true },
-            { headerName: 'Coin', field: 'coin', sortable: true },
+            { headerName: 'Currency', field: 'currency', sortable: true },
             { headerName: 'Volume', field: 'volume', sortable: true },
             { headerName: 'Price', field: 'price', sortable: true }
         ]

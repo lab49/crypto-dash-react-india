@@ -1,4 +1,4 @@
-import { apiNames, dayUnits } from './appConstants'
+import { dayUnits } from '../constants/appConstants'
 
 let graphOptions = {
     title: { text: '' },
@@ -43,23 +43,19 @@ export const getGraphInterval = (unit) => {
     }
 }
 
-export const getGraphOptions = (resp) => {
-    const graphData = resp?.data?.data;
-
-    if (graphData) {
-        graphOptions.xAxis.categories = getGraphPeriods(graphData, 'period')
-        graphOptions.xAxis.labels.step = Math.ceil(graphData.length / 10);
-        graphOptions.series = [{
-            showInLegend: false,
-            data: getGraphDataPoints(graphData, 'high')
-        }]
-        graphOptions.plotOptions = {
-            series: {
-                color: getGraphColor(graphData, 'high')
-            }
+export const getGraphOptions = (graphData) => {
+    
+    graphOptions.xAxis.categories = getGraphPeriods(graphData, 'period')
+    graphOptions.xAxis.labels.step = Math.ceil(graphData.length / 10);
+    graphOptions.series = [{
+        showInLegend: false,
+        data: getGraphDataPoints(graphData, 'high')
+    }]
+    graphOptions.plotOptions = {
+        series: {
+            color: getGraphColor(graphData, 'high')
         }
-        return { ...graphOptions };
-    } else {
-        return {}
     }
+
+    return { ...graphOptions };
 }

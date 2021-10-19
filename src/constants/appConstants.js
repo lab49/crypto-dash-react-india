@@ -10,12 +10,6 @@ export const graphRanges = [
 
 export const coinName = 'bitcoin';
 
-export const apiNames = {
-    GRAPHDATA: 'graphData',
-    ASSETINFO: 'assetInfo',
-    ASSETPRICE: 'assetPrice'
-}
-
 export const dayUnits = {
     YEARS: 'years',
     MONTHS: 'months',

@@ -1,6 +1,7 @@
 import axios from 'axios';
+import config from '../../config';
 
-axios.defaults.baseURL = "https://api.coincap.io/v2"
+axios.defaults.baseURL = config.COINCAP_URL
 
 export async function getApiData(endPoint, params = {}) {
     try {

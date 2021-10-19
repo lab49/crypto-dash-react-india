@@ -1,30 +1,21 @@
 import Highcharts from 'highcharts'
 import HighchartsReact from 'highcharts-react-official'
 import { useEffect, useState } from 'react'
-import { getApiData } from '../utilities/apiUtility'
-import { coinName, graphRanges } from '../utilities/appConstants'
-import { getGraphInterval, getGraphOptions } from '../utilities/graphDataUtil'
-import { getApiEndpoints } from '../utilities/commonUtility'
-import { getCurrentTimestamp, getTimestampFromDuration } from '../utilities/dateTimeUtil'
+import { coinName, graphRanges } from '../constants/appConstants'
+import { getCryptoPriceGraphData } from '../services/currencyService'
 
 const HistoryChart = () => {
     const [activeRange, setActiveRange] = useState(0),
         [options, setOptions] = useState({});
 
     useEffect(() => {
-        const { value, unit } = graphRanges[activeRange],
-            params = {
-                exchange: 'poloniex',
-                interval: getGraphInterval(unit),
-                baseId: 'ethereum',
-                quoteId: coinName,
-                start: getTimestampFromDuration('sub', value, unit),
-                end: getCurrentTimestamp()
-            }
-        getApiData(getApiEndpoints('graphData'), params)
-            .then(resp => {
-                setOptions(getGraphOptions(resp))
+        const { value, unit } = graphRanges[activeRange]
+
+        getCryptoPriceGraphData(coinName, unit, value)
+            .then(graphOptions => {
+                setOptions(graphOptions)
             })
+
     }, [activeRange])
 
     return (

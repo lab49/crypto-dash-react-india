@@ -1,20 +1,26 @@
 import { useEffect, useState } from 'react';
 import { ArrowDownRight, ArrowUpRight } from 'react-bootstrap-icons';
-import { coinName } from '../utilities/appConstants'
+import { coinName } from '../constants/appConstants'
+import { apiNames } from '../constants/endpointConstants';
+import { closeWebSocket, initializeWebSocket } from '../services/webSocketService';
+import { getCryptoCurrencyPrice } from '../utilities/currencyDataUtility';
 import { getApiEndpoints, roundDecimalPlaces } from '../utilities/commonUtility';
 
-const Header = ({ coinInfo }) => {
-    const { name, symbol, diff, percentage } = coinInfo,
-        [coinPrice, setCoinPrice] = useState(0);
+const Header = ({ cryptoCurrencyInfo }) => {
+    const { name, symbol, diff, percentage } = cryptoCurrencyInfo,
+        [cryptoCurrencyPrice, setCryptoCurrencyPrice] = useState(0);
 
     useEffect(() => {
-        const pricesWs = new WebSocket(getApiEndpoints('assetPrice', { coinName }));
+        const priceInfoEndpoint = getApiEndpoints(apiNames.PRICE_DETAILS, { coinName }),
+            pricesWs = initializeWebSocket(priceInfoEndpoint);
+
         pricesWs.onmessage = function (msg) {
-            setCoinPrice(JSON.parse(msg.data)[coinName])
+            const price = getCryptoCurrencyPrice(msg, coinName)
+            setCryptoCurrencyPrice(price);
         }
 
         return () => {
-            pricesWs.close()
+            closeWebSocket(pricesWs)
         }
     }, [])
 
@@ -27,7 +33,7 @@ const Header = ({ coinInfo }) => {
                 {name}
             </div>
             <div className="h3">
-                ${roundDecimalPlaces(coinPrice, 2)}
+                ${roundDecimalPlaces(cryptoCurrencyPrice, 2)}
             </div>
             <div className="h6">
                 {

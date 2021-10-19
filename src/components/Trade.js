@@ -2,15 +2,36 @@ import { useState } from 'react'
 import { roundDecimalPlaces } from '../utilities/commonUtility';
 import { getDataFromLocalStorage, setDataToLocalStorage } from '../utilities/localStorageUtil';
 
-const Trade = ({ coinName, volume, price = 0 }) => {
+const Trade = ({ name, volume, price = 0 }) => {
     const [showVolumne, setShowVolume] = useState(true),
-        [coinVolumne, setCoinVolume] = useState("");
-    let coinPrice = (coinVolumne * price).toFixed(2);
+        [cryptoCurrencyVolumne, setCryptoCurrencyVolume] = useState("");
+    let coinPrice = (cryptoCurrencyVolumne * price).toFixed(2);
 
-    function changeCoinVolume(event) {
+    function changeCurrencyVolume(event) {
         const { value } = event.target;
 
-        setCoinVolume(value);
+        setCryptoCurrencyVolume(value);
+    }
+
+    function buyCoin() {
+        if(!cryptoCurrencyVolumne) return;
+
+        const tradeData = {
+            date: new Date().toUTCString(),
+            currency: name,
+            volume: cryptoCurrencyVolumne,
+            price: coinPrice
+        }
+        let tradeHistory = getDataFromLocalStorage('coinTradeHistory');
+
+        if (Array.isArray(tradeHistory)) {
+            tradeHistory.push(tradeData)
+        } else {
+            tradeHistory = [tradeData]
+        }
+
+        setDataToLocalStorage('coinTradeHistory', tradeHistory)
+        setShowVolume(true)
     }
 
     function buyCoin() {
@@ -64,8 +85,8 @@ const Trade = ({ coinName, volume, price = 0 }) => {
                                 type="text"
                                 className="form-control"
                                 placeholder="Coins"
-                                value={coinVolumne}
-                                onChange={changeCoinVolume}
+                                value={cryptoCurrencyVolumne}
+                                onChange={changeCurrencyVolume}
                             />
                             <input
                                 type="text"
