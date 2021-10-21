@@ -24,12 +24,12 @@ const HistoryChart = () => {
                 highcharts={Highcharts}
                 options={options}
             />
-            <div className="d-flex justify-content-around">
+            <div className="d-flex justify-content-end">
                 {
                     graphRanges.map(({ label }, index) => (
                         <button
                             key={label}
-                            className={`btn btn-outline-primary ${index === activeRange ? "active" : ""}`}
+                            className={`btn btn-link ${index === activeRange ? "active" : ""}`}
                             onClick={() => setActiveRange(index)}
                         >
                             {label}
