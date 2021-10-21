@@ -2,17 +2,16 @@ import { useEffect, useState } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
-import { getDataFromLocalStorage } from '../utilities/localStorageUtil';
 
-const Orders = () => {
+const Orders = ({ tradeHistory }) => {
     const [gridApi, setGridApi] = useState(null),
         [gridColumnApi, setGridColumnApi] = useState(null),
-        tradeHistory = getDataFromLocalStorage('coinTradeHistory'),
         columnDefs = [
             { headerName: 'Date', field: 'date', sortable: true },
             { headerName: 'Currency', field: 'currency', sortable: true },
             { headerName: 'Volume', field: 'volume', sortable: true },
-            { headerName: 'Price', field: 'price', sortable: true }
+            { headerName: 'Price', field: 'price', sortable: true },
+            { headerName: 'Status', field: 'status', sortable: true }
         ]
 
     const onGridReady = (params) => {
@@ -29,7 +28,7 @@ const Orders = () => {
             gridColumnApi.autoSizeColumns(allColumnIds);
         }
 
-        if(gridApi) {
+        if (gridApi) {
             gridApi.setDomLayout('autoHeight');
         }
     }, [gridApi, gridColumnApi])

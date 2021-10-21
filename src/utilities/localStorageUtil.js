@@ -1,9 +1,13 @@
 export const getDataFromLocalStorage = (key) => {
     try {
-        const data = localStorage.getItem(key)
-        return JSON.parse(data)
+        if (typeof localStorage !== 'undefined') {
+            const data = localStorage.getItem(key)
+            return JSON.parse(data)
+        } else {
+            return null;
+        }
     } catch (error) {
-        console.log(error)
+        console.error(error)
     }
 }
 
@@ -12,6 +16,6 @@ export const setDataToLocalStorage = (key, value) => {
         const dataString = JSON.stringify(value)
         localStorage.setItem(key, dataString)
     } catch (error) {
-        console.log(error)
+        console.error(error)
     }
 }

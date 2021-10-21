@@ -5,8 +5,8 @@ import { formatCryptoCurrencyInfo } from '../utilities/currencyDataUtility'
 import { getGraphInterval, getGraphOptions } from '../utilities/graphDataUtil'
 import { getCurrentTimestamp, getTimestampFromDuration } from '../utilities/dateTimeUtil'
 
-export const getCryptoCurrencyInfo = async (coinName) => {
-    const currencyInfoEndpoint = getApiEndpoints(apiNames.CURRENCY_INFO, { coinName })
+export const getCryptoCurrencyInfo = async (currencyName) => {
+    const currencyInfoEndpoint = getApiEndpoints(apiNames.CURRENCY_INFO, { currencyName })
 
     const resp = await getApiData(currencyInfoEndpoint),
         currency = resp?.data?.data
@@ -14,13 +14,13 @@ export const getCryptoCurrencyInfo = async (coinName) => {
     return currency ? formatCryptoCurrencyInfo(currency) : {}
 }
 
-export const getCryptoPriceGraphData = async (coinName, unit, value) => {
+export const getCryptoPriceGraphData = async (currencyName, unit, value) => {
     const priceHistoryEndpoint = getApiEndpoints(apiNames.CURRENCY_PRICE_HISTORY),
         params = {
             exchange: 'poloniex',
             interval: getGraphInterval(unit),
             baseId: 'ethereum',
-            quoteId: coinName,
+            quoteId: currencyName,
             start: getTimestampFromDuration('sub', value, unit),
             end: getCurrentTimestamp()
         }
