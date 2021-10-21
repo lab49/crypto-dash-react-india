@@ -4,11 +4,9 @@ export const graphRanges = [
     { label: '1M', value: 1, unit: 'months' },
     { label: '3M', value: 3, unit: 'months' },
     { label: '1Y', value: 1, unit: 'years' },
-    { label: '2Y', value: 2, unit: 'years' },
-    { label: '3Y', value: 3, unit: 'years' }
+    { label: '5Y', value: 5, unit: 'years' },
+    { label: '10Y', value: 10, unit: 'years' }
 ];
-
-export const currencyName = 'bitcoin';
 
 export const dayUnits = {
     YEARS: 'years',
@@ -17,6 +15,6 @@ export const dayUnits = {
     DAYS: 'days'
 }
 
-export const localStorageKey ={
-   CURRENCY_TRADE_HISTORY : 'currencyTradeHistory'
+export const localStorageKey = {
+    CURRENCY_TRADE_HISTORY: 'currencyTradeHistory'
 }

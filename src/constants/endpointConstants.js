@@ -6,7 +6,7 @@ export const apiNames = {
 
 
 export const apiEndpoints = {
-    [apiNames.CURRENCY_PRICE_HISTORY]: 'candles',
-    [apiNames.CURRENCY_INFO]: ({currencyName}) => `assets/${currencyName}`,
-    [apiNames.PRICE_DETAILS]: ({currencyName}) => `wss://ws.coincap.io/prices?assets=${currencyName}`
+    [apiNames.CURRENCY_PRICE_HISTORY]: ({ currencyName }) => `assets/${currencyName}/history`,
+    [apiNames.CURRENCY_INFO]: ({ currencyName }) => `assets/${currencyName}`,
+    [apiNames.PRICE_DETAILS]: ({ currencyName }) => `wss://ws.coincap.io/prices?assets=${currencyName}`
 }

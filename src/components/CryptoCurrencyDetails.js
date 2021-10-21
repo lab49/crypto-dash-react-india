@@ -1,17 +1,16 @@
-import {useEffect, useState} from 'react';
-import {ArrowDownRight, ArrowUpRight} from 'react-bootstrap-icons';
-import {currencyName} from '../constants/appConstants'
-import {apiNames} from '../constants/endpointConstants';
-import {closeWebSocket, initializeWebSocket} from '../services/webSocketService';
-import {getCryptoCurrencyPrice} from '../utilities/currencyDataUtility';
-import {getApiEndpoints, roundDecimalPlaces} from '../utilities/commonUtility';
+import { useEffect, useState } from 'react';
+import { ArrowDownRight, ArrowUpRight } from 'react-bootstrap-icons';
+import { apiNames } from '../constants/endpointConstants';
+import { closeWebSocket, initializeWebSocket } from '../services/webSocketService';
+import { getCryptoCurrencyPrice } from '../utilities/currencyDataUtility';
+import { getApiEndpoints, roundDecimalPlaces } from '../utilities/commonUtility';
 
-const CryptoCurrencyDetails = ({cryptoCurrencyInfo}) => {
-    const {name, symbol, diff, percentage} = cryptoCurrencyInfo,
-        [cryptoCurrencyPrice, setCryptoCurrencyPrice] = useState(0);
+const CryptoCurrencyDetails = ({ currencyName, cryptoCurrencyInfo }) => {
+    const { name, symbol, diff, percentage, priceUsd } = cryptoCurrencyInfo,
+        [cryptoCurrencyPrice, setCryptoCurrencyPrice] = useState(priceUsd);
 
     useEffect(() => {
-        const priceInfoEndpoint = getApiEndpoints(apiNames.PRICE_DETAILS, {currencyName}),
+        const priceInfoEndpoint = getApiEndpoints(apiNames.PRICE_DETAILS, { currencyName }),
             pricesWs = initializeWebSocket(priceInfoEndpoint);
 
         pricesWs.onmessage = function (msg) {
@@ -22,7 +21,11 @@ const CryptoCurrencyDetails = ({cryptoCurrencyInfo}) => {
         return () => {
             closeWebSocket(pricesWs)
         }
-    }, [])
+    }, [currencyName])
+
+    useEffect(() => {
+        setCryptoCurrencyPrice(priceUsd)
+    }, [priceUsd])
 
     return (
         <div>
@@ -35,8 +38,8 @@ const CryptoCurrencyDetails = ({cryptoCurrencyInfo}) => {
             <div className="h6">
                 {
                     diff >= 0 ?
-                        <ArrowUpRight className="text-success" size={16}/> :
-                        <ArrowDownRight className="text-danger" size={16}/>
+                        <ArrowUpRight className="text-success" size={16} /> :
+                        <ArrowDownRight className="text-danger" size={16} />
                 }
                 <span className={`d-inline-block mx-2 ${diff < 0 ? "text-danger" : "text-success"}`}>
                     {`$${Math.abs(roundDecimalPlaces(diff, 2))} (${roundDecimalPlaces(percentage, 2)}%)`}

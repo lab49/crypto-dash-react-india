@@ -15,12 +15,9 @@ export const getCryptoCurrencyInfo = async (currencyName) => {
 }
 
 export const getCryptoPriceGraphData = async (currencyName, unit, value) => {
-    const priceHistoryEndpoint = getApiEndpoints(apiNames.CURRENCY_PRICE_HISTORY),
+    const priceHistoryEndpoint = getApiEndpoints(apiNames.CURRENCY_PRICE_HISTORY, { currencyName }),
         params = {
-            exchange: 'poloniex',
             interval: getGraphInterval(unit),
-            baseId: 'ethereum',
-            quoteId: currencyName,
             start: getTimestampFromDuration('sub', value, unit),
             end: getCurrentTimestamp()
         }
@@ -28,5 +25,5 @@ export const getCryptoPriceGraphData = async (currencyName, unit, value) => {
     const resp = await getApiData(priceHistoryEndpoint, params),
         graphData = resp?.data?.data;
 
-    return graphData ? getGraphOptions(graphData) : {}
+    return Array.isArray(graphData) && graphData.length ? getGraphOptions(graphData) : {}
 }

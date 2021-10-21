@@ -1,10 +1,10 @@
 import Highcharts from 'highcharts'
 import HighchartsReact from 'highcharts-react-official'
 import { useEffect, useState } from 'react'
-import { currencyName, graphRanges } from '../constants/appConstants'
+import { graphRanges } from '../constants/appConstants'
 import { getCryptoPriceGraphData } from '../services/currencyService'
 
-const HistoryChart = () => {
+const HistoryChart = ({ currencyName }) => {
     const [activeRange, setActiveRange] = useState(0),
         [options, setOptions] = useState({});
 
@@ -16,7 +16,7 @@ const HistoryChart = () => {
                 setOptions(graphOptions)
             })
 
-    }, [activeRange])
+    }, [currencyName, activeRange])
 
     return (
         <div>

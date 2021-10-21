@@ -36,24 +36,25 @@ const getGraphColor = (graphData, key) => {
 
 export const getGraphInterval = (unit) => {
     switch (unit) {
-        case dayUnits.YEARS: return 'w1';
-        case dayUnits.MONTHS: return 'd1';
-        case dayUnits.WEEKS: return 'h8';
-        default: return 'h1';
+        case dayUnits.DAYS: return 'h1';
+        case dayUnits.WEEKS: return 'h6';
+        case dayUnits.MONTHS: return 'h12';
+        default: return 'd1';
     }
+    
 }
 
 export const getGraphOptions = (graphData) => {
     
-    graphOptions.xAxis.categories = getGraphPeriods(graphData, 'period')
+    graphOptions.xAxis.categories = getGraphPeriods(graphData, 'time')
     graphOptions.xAxis.labels.step = Math.ceil(graphData.length / 10);
     graphOptions.series = [{
         showInLegend: false,
-        data: getGraphDataPoints(graphData, 'high')
+        data: getGraphDataPoints(graphData, 'priceUsd')
     }]
     graphOptions.plotOptions = {
         series: {
-            color: getGraphColor(graphData, 'high')
+            color: getGraphColor(graphData, 'priceUsd')
         }
     }
 
