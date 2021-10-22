@@ -32,7 +32,7 @@ const Trade = ({ name, volume, price = 0, updateTradeHistory }) => {
             <span className="h3">Stats</span>
             {
                 showVolumne ? (
-                    <div className="row py-2">
+                    <div className="row">
                         <div className="col">
                             <div>Today's Volume</div>
                             <div>
@@ -41,9 +41,9 @@ const Trade = ({ name, volume, price = 0, updateTradeHistory }) => {
                                 </strong>
                             </div>
                         </div>
-                        <div className="col-3">
+                        <div className="col-2">
                             <button
-                                className="btn btn-primary btn-lg"
+                                className="btn btn-secondary btn-lg"
                                 onClick={() => setShowVolume(false)}
                             >
                                 Trade
@@ -55,22 +55,22 @@ const Trade = ({ name, volume, price = 0, updateTradeHistory }) => {
                         <div className="input-group col">
                             <input
                                 type="text"
-                                className="form-control"
+                                className="form-control bg-transparent text-white"
                                 placeholder="Currency Volume"
                                 value={cryptoCurrencyVolumne}
                                 onChange={changeCurrencyVolume}
                             />
                             <input
                                 type="text"
-                                className="form-control"
+                                className="form-control bg-secondary text-white"
                                 placeholder="Value"
                                 disabled={true}
                                 value={`$ ${cryptoCurrencyPrice}`}
                             />
                         </div>
-                        <div className="col-3">
+                        <div className="col-2">
                             <button
-                                className="btn btn-primary btn-lg"
+                                className="btn btn-secondary btn-lg"
                                 onClick={buyCryptoCurrency}
                             >
                                 Buy

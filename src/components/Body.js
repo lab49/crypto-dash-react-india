@@ -32,40 +32,29 @@ const Body = () => {
     }
 
     return (
-        <div className="row mx-2">
-            <select
-                className="form-select form-select-lg mb-3"
-                onChange={(event) => setCurrencyName(event.target.value)}
-                value={currencyName}
-            >
-                {
-                    currencyList.map(({ label, value }) => (
-                        <option key={value} value={value}>
-                            {label}
-                        </option>
-                    ))
-                }
-            </select>
+        <div className="body row mx-2 py-4">
             <div className="row">
-                <div className="col-md-8 col-lg-8 col-sm-12 border-end border-warning">
+                <div className="col-lg-6">
+                    <select
+                        className="form-select form-select-lg mb-3 bg-secondary text-white"
+                        onChange={(event) => setCurrencyName(event.target.value)}
+                        value={currencyName}
+                    >
+                        {
+                            currencyList.map(({ label, value }) => (
+                                <option key={value} value={value}>
+                                    {label}
+                                </option>
+                            ))
+                        }
+                    </select>
                     <CryptoCurrencyDetails
                         currencyName={currencyName}
                         cryptoCurrencyInfo={cryptoCurrencyInfo}
                     />
-                    <HistoryChart
-                        currencyName={currencyName}
-                    />
                 </div>
-                <div className="col-md-4 col-lg-4 col-sm-12">
-                    <Orders
-                        tradeHistory={tradeHistory}
-                    />
-                </div>
-            </div>
-
-            <div className="row justify-content-md-between border-top border-success">
-                <div className="col-md-4 col-sm-12">
-                    <div className="card mt-2">
+                <div className="col-lg-6">
+                    <div className="card bg-transparent border-light">
                         <div className="card-body">
                             <Trade
                                 name={cryptoCurrencyInfo.name}
@@ -75,6 +64,18 @@ const Body = () => {
                             />
                         </div>
                     </div>
+                </div>
+            </div>
+            <div className="row pr-0">
+                <div className="col-lg-6">
+                    <HistoryChart
+                        currencyName={currencyName}
+                    />
+                </div>
+                <div className="col-lg-6">
+                    <Orders
+                        tradeHistory={tradeHistory}
+                    />
                 </div>
             </div>
         </div>

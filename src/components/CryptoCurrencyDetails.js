@@ -30,7 +30,7 @@ const CryptoCurrencyDetails = ({ currencyName, cryptoCurrencyInfo }) => {
     return (
         <div>
             <div>
-                {name} <span className="btn btn-dark">{symbol}</span>
+                {name} <span className="btn btn-secondary">{symbol}</span>
             </div>
             <div className="h3">
                 ${roundDecimalPlaces(cryptoCurrencyPrice, 2)}

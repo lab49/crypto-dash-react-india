@@ -25,5 +25,5 @@ export const getCryptoPriceGraphData = async (currencyName, unit, value) => {
     const resp = await getApiData(priceHistoryEndpoint, params),
         graphData = resp?.data?.data;
 
-    return Array.isArray(graphData) && graphData.length ? getGraphOptions(graphData) : {}
+    return Array.isArray(graphData) && graphData.length ? getGraphOptions(graphData, unit) : {}
 }

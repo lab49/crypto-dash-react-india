@@ -4,6 +4,7 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  background-color: #343a40 !important;
 }
 
 a {
@@ -16,10 +17,32 @@ a {
 }
 
 .footer {
-  position: absolute;
+  position: sticky;
   bottom: 0;
   width: 100%;
   height: 60px;
   line-height: 60px;
   background-color: #212529;
+}
+
+.btn-graph {
+  color: grey !important;
+  &:hover,
+  &.active {
+    color: white !important;
+  }
+  &:focus {
+    box-shadow: none !important;
+  }
+}
+
+input, select {
+  &:focus {
+    box-shadow: none !important;
+    border-color: white !important;
+  }
+}
+
+.body {
+  min-height: calc(100vh - 116px);
 }

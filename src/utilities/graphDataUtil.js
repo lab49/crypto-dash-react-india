@@ -1,4 +1,5 @@
 import { dayUnits } from '../constants/appConstants'
+import { getFormatedDate } from './dateTimeUtil'
 
 let graphOptions = {
     title: { text: '' },
@@ -12,14 +13,48 @@ let graphOptions = {
         }
     },
     credits: { enabled: false },
-    chart: { height: 350, type: 'line' },
+    chart: {
+        backgroundColor: '#343a40',
+        height: 350,
+        type: 'line'
+    },
     xAxis: {
-        labels: { rotation: -45 }
+        labels: {
+            rotation: -45,
+            style: { color: 'white' }
+        }
+    },
+    yAxis: {
+        title: { text: null },
+        labels: {
+            style: { color: 'white' }
+        }
     }
 }
 
-const getGraphPeriods = (graphData, key) => {
-    return graphData.map(data => new Date(data[key]).toDateString())
+const getGraphPeriods = (graphData, key, unit) => {
+
+    let format = '';
+
+    switch (unit) {
+        case dayUnits.DAYS:
+            format = 'Do h:mm a';
+            break;
+        case dayUnits.WEEKS:
+            format = 'Do';
+            break;
+        case dayUnits.MONTHS:
+            format = 'MMM-DD';
+            break;
+        case dayUnits.YEARS:
+            format = 'MMM-YYYY';
+            break;
+        default:
+            format = 'DD-MM-YYYY';
+            break;
+    }
+
+    return graphData.map(data => getFormatedDate(data[key], format))
 }
 
 const getGraphDataPoints = (graphData, key) => {
@@ -41,12 +76,11 @@ export const getGraphInterval = (unit) => {
         case dayUnits.MONTHS: return 'h12';
         default: return 'd1';
     }
-    
 }
 
-export const getGraphOptions = (graphData) => {
-    
-    graphOptions.xAxis.categories = getGraphPeriods(graphData, 'time')
+export const getGraphOptions = (graphData, unit) => {
+
+    graphOptions.xAxis.categories = getGraphPeriods(graphData, 'time', unit)
     graphOptions.xAxis.labels.step = Math.ceil(graphData.length / 10);
     graphOptions.series = [{
         showInLegend: false,

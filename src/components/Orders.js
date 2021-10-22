@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
-import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
+import 'ag-grid-community/dist/styles/ag-theme-alpine-dark.css';
 
 const Orders = ({ tradeHistory }) => {
     const [gridApi, setGridApi] = useState(null),
@@ -35,8 +35,8 @@ const Orders = ({ tradeHistory }) => {
 
 
     return (
-        <div className="ag-theme-alpine">
-            <span className="h3">Orders</span>
+        <div id="myGrid" className="ag-theme-alpine-dark">
+            <h3>Orders</h3>
             <AgGridReact
                 columnDefs={columnDefs}
                 rowData={Array.isArray(tradeHistory) ? tradeHistory : []}

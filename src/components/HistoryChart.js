@@ -20,16 +20,17 @@ const HistoryChart = ({ currencyName }) => {
 
     return (
         <div>
+            <h3>Live Chart</h3>
             <HighchartsReact
                 highcharts={Highcharts}
                 options={options}
             />
-            <div className="d-flex justify-content-end">
+            <div className="d-flex justify-content-end mt-2">
                 {
                     graphRanges.map(({ label }, index) => (
                         <button
                             key={label}
-                            className={`btn btn-link ${index === activeRange ? "active" : ""}`}
+                            className={`btn btn-graph ${index === activeRange ? "active" : ""}`}
                             onClick={() => setActiveRange(index)}
                         >
                             {label}
