@@ -18,3 +18,13 @@ export const dayUnits = {
 export const localStorageKey = {
     CURRENCY_TRADE_HISTORY: 'currencyTradeHistory'
 }
+
+export const DATE_FORMATS = {
+    DDMMYYYYHMMA : 'DD/MM/YYYY h:mm a'
+}
+
+export const Constants = {
+     MS : 'ms',
+     DAY : 'day',
+     DAYS : 'days'
+}

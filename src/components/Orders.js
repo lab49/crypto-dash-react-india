@@ -2,12 +2,26 @@ import { useEffect, useState } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine-dark.css';
+import { dateFormatter, dateComparator, dateComparatorFilter } from "../utilities/commonUtility";
 
 const Orders = ({ tradeHistory }) => {
     const [gridApi, setGridApi] = useState(null),
         [gridColumnApi, setGridColumnApi] = useState(null),
         columnDefs = [
-            { headerName: 'Date', field: 'date', sortable: true },
+            {
+                headerName: 'Date',
+                field: 'date',
+                sortable: true,
+                valueFormatter: dateFormatter,
+                width: 15,
+                filter: 'agDateColumnFilter',
+                comparator:dateComparator,
+                filterParams: {
+                    debounceMs: 500,
+                    suppressAndOrCondition: true,
+                    comparator: dateComparatorFilter
+            }
+            },
             { headerName: 'Currency', field: 'currency', sortable: true, filter: 'agTextColumnFilter' },
             { headerName: 'Volume', field: 'volume', sortable: true, filter: 'agNumberColumnFilter' },
             { headerName: 'Price', field: 'price', sortable: true, filter: 'agNumberColumnFilter' },
