@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine-dark.css';
-import { dateFormatter, dateComparator, dateComparatorFilter } from "../utilities/commonUtility";
+import { dateFormatter, dateComparator, dateComparatorFilter } from "../utilities/dateTimeUtil";
 
 const Orders = ({ tradeHistory }) => {
     const [gridApi, setGridApi] = useState(null),
