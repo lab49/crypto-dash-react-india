@@ -8,10 +8,10 @@ const Orders = ({ tradeHistory }) => {
         [gridColumnApi, setGridColumnApi] = useState(null),
         columnDefs = [
             { headerName: 'Date', field: 'date', sortable: true },
-            { headerName: 'Currency', field: 'currency', sortable: true },
-            { headerName: 'Volume', field: 'volume', sortable: true },
-            { headerName: 'Price', field: 'price', sortable: true },
-            { headerName: 'Status', field: 'status', sortable: true }
+            { headerName: 'Currency', field: 'currency', sortable: true, filter: 'agTextColumnFilter' },
+            { headerName: 'Volume', field: 'volume', sortable: true, filter: 'agNumberColumnFilter' },
+            { headerName: 'Price', field: 'price', sortable: true, filter: 'agNumberColumnFilter' },
+            { headerName: 'Status', field: 'status', sortable: true, filter: 'agTextColumnFilter' }
         ]
 
     const onGridReady = (params) => {
