@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Input from './FormComponents/Input'
 import Button from './FormComponents/Button'
 import { roundDecimalPlaces } from '../utilities/commonUtility'
-import { getFormatedCurrentDate } from '../utilities/dateTimeUtil'
+import { getFormattedCurrentDate } from '../utilities/dateTimeUtil'
 
 const CurrencyBuySell = ({ name, price, updateTradeHistory, setShowVolume }) => {
     const [cryptoCurrencyVolumne, setCryptoCurrencyVolume] = useState("");
@@ -12,7 +12,7 @@ const CurrencyBuySell = ({ name, price, updateTradeHistory, setShowVolume }) => 
         if (!cryptoCurrencyVolumne) return;
 
         const tradeData = {
-            date: getFormatedCurrentDate('Do MMM YYYY h:mm A'),
+            date: getFormattedCurrentDate('Do MMM YYYY h:mm A'),
             currency: name,
             volume: cryptoCurrencyVolumne,
             price: cryptoCurrencyPrice
