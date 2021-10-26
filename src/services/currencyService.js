@@ -1,9 +1,18 @@
 import { apiNames } from '../constants/endpointConstants'
 import { getApiEndpoints } from '../utilities/commonUtility'
 import { getApiData } from '../utilities/apiUtility'
-import { formatCryptoCurrencyInfo } from '../utilities/currencyDataUtility'
+import { formatCryptoCurrencyInfo, getBiggestWinnerAndLoosers } from '../utilities/currencyDataUtility'
 import { getGraphInterval, getGraphOptions } from '../utilities/graphDataUtil'
 import { getCurrentTimestamp, getTimestampFromDuration } from '../utilities/dateTimeUtil'
+
+export const getTopCurrencyInfo = async () => {
+    const allCurrencyInfoEndpoint = getApiEndpoints(apiNames.ALL_CURRENCY_INFO)
+
+    const resp = await getApiData(allCurrencyInfoEndpoint),
+        currencyList = resp?.data?.data
+
+    return getBiggestWinnerAndLoosers(currencyList)
+}
 
 export const getCryptoCurrencyInfo = async (currencyName) => {
     const currencyInfoEndpoint = getApiEndpoints(apiNames.CURRENCY_INFO, { currencyName })

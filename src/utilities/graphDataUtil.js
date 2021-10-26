@@ -32,28 +32,18 @@ let graphOptions = {
     }
 }
 
-const getGraphPeriods = (graphData, key, unit) => {
-
-    let format = '';
-
+const getGraphDateFormat = (unit) => {
     switch (unit) {
-        case dayUnits.DAYS:
-            format = 'Do h:mm a';
-            break;
-        case dayUnits.WEEKS:
-            format = 'Do';
-            break;
-        case dayUnits.MONTHS:
-            format = 'MMM-DD';
-            break;
-        case dayUnits.YEARS:
-            format = 'MMM-YYYY';
-            break;
-        default:
-            format = 'DD-MM-YYYY';
-            break;
+        case dayUnits.DAYS: return 'Do h:mm a';
+        case dayUnits.WEEKS: return 'Do';
+        case dayUnits.MONTHS: return 'MMM-DD';
+        case dayUnits.YEARS: return 'MMM-YYYY';
+        default: return 'DD-MM-YYYY';
     }
+}
 
+const getGraphPeriods = (graphData, key, unit) => {
+    const format = getGraphDateFormat(unit);
     return graphData.map(data => getFormatedDate(data[key], format))
 }
 

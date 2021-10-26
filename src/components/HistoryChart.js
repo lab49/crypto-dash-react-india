@@ -1,5 +1,6 @@
 import Highcharts from 'highcharts'
 import HighchartsReact from 'highcharts-react-official'
+import Button from './FormComponents/Button'
 import { useEffect, useState } from 'react'
 import { graphRanges } from '../constants/appConstants'
 import { getCryptoPriceGraphData } from '../services/currencyService'
@@ -28,13 +29,13 @@ const HistoryChart = ({ currencyName }) => {
             <div className="d-flex justify-content-end mt-2">
                 {
                     graphRanges.map(({ label }, index) => (
-                        <button
+                        <Button
                             key={label}
                             className={`btn btn-graph ${index === activeRange ? "active" : ""}`}
-                            onClick={() => setActiveRange(index)}
+                            onClickHandler={() => setActiveRange(index)}
                         >
                             {label}
-                        </button>
+                        </Button>
                     ))
                 }
             </div>

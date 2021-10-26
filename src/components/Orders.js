@@ -9,7 +9,7 @@ const Orders = ({ tradeHistory }) => {
         columnDefs = [
             { headerName: 'Date', field: 'date', sortable: true },
             { headerName: 'Currency', field: 'currency', sortable: true },
-            { headerName: 'Volume', field: 'volume', sortable: true },
+            { headerName: 'Quantity', field: 'volume', sortable: true },
             { headerName: 'Price', field: 'price', sortable: true },
             { headerName: 'Status', field: 'status', sortable: true }
         ]
@@ -36,7 +36,7 @@ const Orders = ({ tradeHistory }) => {
 
     return (
         <div id="myGrid" className="ag-theme-alpine-dark">
-            <h3>Orders</h3>
+            <h3>Your Orders</h3>
             <AgGridReact
                 columnDefs={columnDefs}
                 rowData={Array.isArray(tradeHistory) ? tradeHistory : []}

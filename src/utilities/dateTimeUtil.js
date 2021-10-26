@@ -17,3 +17,7 @@ export function getTimestampFromDuration(operation, value, unit) {
 export function getFormatedDate(time, format) {
     return moment(time).format(format)
 }
+
+export function getFormatedCurrentDate(format) {
+    return moment().format(format)
+}
