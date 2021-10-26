@@ -15,8 +15,14 @@ export const dayUnits = {
     DAYS: 'days'
 }
 
-export const localStorageKey = {
-    CURRENCY_TRADE_HISTORY: 'currencyTradeHistory'
+export const LOCAL_STORAGE_KEY = {
+    CURRENCY_TRADE_HISTORY: 'currencyTradeHistory',
+    USER_ACCOUNT_WALLET: 'userAccountWallet'
+}
+
+export const ORDER_TYPE = {
+    BUY: 'Buy',
+    SELL: 'Sell'
 }
 
 export const DATE_FORMATS = {

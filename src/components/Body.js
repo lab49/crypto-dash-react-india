@@ -4,7 +4,7 @@ import Orders from "./Orders";
 import Trade from "./Trade";
 import { useEffect, useState } from "react";
 import { getDataFromLocalStorage, setDataToLocalStorage } from "../utilities/localStorageUtil";
-import { localStorageKey } from "../constants/appConstants";
+import { LOCAL_STORAGE_KEY, ORDER_TYPE } from "../constants/appConstants";
 import { getCryptoCurrencyInfo } from "../services/currencyService";
 import { getDefaultCurrencyValue } from "../constants/currency";
 import CurrencyMarketToday from "./CurrencyMarketToday.js";
@@ -13,8 +13,11 @@ const Body = () => {
 
     const [currencyName, setCurrencyName] = useState(getDefaultCurrencyValue()),
         [cryptoCurrencyInfo, setCryptoCurrencyInfo] = useState({}),
-        currencyTradeHistory = getDataFromLocalStorage(localStorageKey.CURRENCY_TRADE_HISTORY),
+        currencyTradeHistory = getDataFromLocalStorage(LOCAL_STORAGE_KEY.CURRENCY_TRADE_HISTORY),
         [tradeHistory, setTradeHistory] = useState(currencyTradeHistory);
+
+    const userAccountWallet = getDataFromLocalStorage(LOCAL_STORAGE_KEY.USER_ACCOUNT_WALLET);
+    const [userWallet, setUserWallet] = useState(userAccountWallet === null ? {} : userAccountWallet);
 
     useEffect(() => {
         getCryptoCurrencyInfo(currencyName)
@@ -23,13 +26,24 @@ const Body = () => {
             });
     }, [currencyName])
 
+    const updateUserWallet = (tradeData) => {
+        const currencyName = tradeData.currency;
+        userWallet[currencyName] = userWallet[currencyName] ?
+            ORDER_TYPE.BUY === tradeData.orderType ?  (userWallet[currencyName] + tradeData.volume)
+                : (userWallet[currencyName] - tradeData.volume)
+            : tradeData.volume;
+        setUserWallet(userWallet);
+        setDataToLocalStorage(LOCAL_STORAGE_KEY.USER_ACCOUNT_WALLET, userWallet)
+    }
+
     const updateTradeHistory = (tradeData) => {
-        const mofifiedTradeHistory = Array.isArray(tradeHistory) ?
+        const modifiedTradeHistory = Array.isArray(tradeHistory) ?
             tradeHistory.concat(tradeData) :
             [tradeData];
 
-        setDataToLocalStorage(localStorageKey.CURRENCY_TRADE_HISTORY, mofifiedTradeHistory)
-        setTradeHistory(mofifiedTradeHistory)
+        setDataToLocalStorage(LOCAL_STORAGE_KEY.CURRENCY_TRADE_HISTORY, modifiedTradeHistory)
+        setTradeHistory(modifiedTradeHistory)
+        updateUserWallet(tradeData)
     }
 
     return (
@@ -53,6 +67,7 @@ const Body = () => {
                                 volume={cryptoCurrencyInfo.volume}
                                 price={cryptoCurrencyInfo.priceUsd}
                                 updateTradeHistory={updateTradeHistory}
+                                availableQty={userWallet[cryptoCurrencyInfo.name]}
                             />
                         </div>
                     </div>

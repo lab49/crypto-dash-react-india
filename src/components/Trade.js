@@ -2,7 +2,7 @@ import { useState } from 'react'
 import CurrencyStats from './CurrencyStats'
 import CurrencyBuySell from './CurrencyBuySell'
 
-const Trade = ({ name, volume, price = 0, updateTradeHistory }) => {
+const Trade = ({ name, volume, price = 0, updateTradeHistory, availableQty }) => {
     const [showVolumne, setShowVolume] = useState(true);
 
     return (
@@ -19,6 +19,7 @@ const Trade = ({ name, volume, price = 0, updateTradeHistory }) => {
                         price={price}
                         setShowVolume={setShowVolume}
                         updateTradeHistory={updateTradeHistory}
+                        availableQty={availableQty}
                     />
                 )
             }
