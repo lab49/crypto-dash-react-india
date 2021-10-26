@@ -50,7 +50,7 @@ const Orders = ({ tradeHistory }) => {
 
     return (
         <div id="myGrid" className="ag-theme-alpine-dark">
-            <h3>Orders</h3>
+            <h3>Your Orders</h3>
             <AgGridReact
                 columnDefs={columnDefs}
                 rowData={Array.isArray(tradeHistory) ? tradeHistory : []}

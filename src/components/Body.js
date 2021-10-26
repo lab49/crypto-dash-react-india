@@ -6,7 +6,8 @@ import { useEffect, useState } from "react";
 import { getDataFromLocalStorage, setDataToLocalStorage } from "../utilities/localStorageUtil";
 import { localStorageKey } from "../constants/appConstants";
 import { getCryptoCurrencyInfo } from "../services/currencyService";
-import { currencyList, getDefaultCurrencyValue } from "../constants/currency";
+import { getDefaultCurrencyValue } from "../constants/currency";
+import CurrencyMarketToday from "./CurrencyMarketToday.js";
 
 const Body = () => {
 
@@ -34,26 +35,17 @@ const Body = () => {
     return (
         <div className="body row mx-2 py-4">
             <div className="row">
-                <div className="col-lg-6">
-                    <select
-                        className="form-select form-select-lg mb-3 bg-secondary text-white"
-                        onChange={(event) => setCurrencyName(event.target.value)}
-                        value={currencyName}
-                    >
-                        {
-                            currencyList.map(({ label, value }) => (
-                                <option key={value} value={value}>
-                                    {label}
-                                </option>
-                            ))
-                        }
-                    </select>
+                <div className="col-3">
                     <CryptoCurrencyDetails
                         currencyName={currencyName}
+                        setCurrencyName={setCurrencyName}
                         cryptoCurrencyInfo={cryptoCurrencyInfo}
                     />
                 </div>
-                <div className="col-lg-6">
+                <div className="col-5">
+                    <CurrencyMarketToday />
+                </div>
+                <div className="col-4">
                     <div className="card bg-transparent border-light">
                         <div className="card-body">
                             <Trade

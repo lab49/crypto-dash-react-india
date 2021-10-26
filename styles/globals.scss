@@ -1,3 +1,5 @@
+$darkGray: #343a40;
+
 html,
 body {
   padding: 0;
@@ -36,7 +38,8 @@ a {
   }
 }
 
-input, select {
+input,
+select {
   &:focus {
     box-shadow: none !important;
     border-color: white !important;
@@ -45,4 +48,8 @@ input, select {
 
 .body {
   min-height: calc(100vh - 116px);
+}
+
+.h-fit-content {
+  height: fit-content;
 }

@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
 import { ArrowDownRight, ArrowUpRight } from 'react-bootstrap-icons';
+import Dropdown from "./FormComponents/Dropdown";
 import { apiNames } from '../constants/endpointConstants';
 import { closeWebSocket, initializeWebSocket } from '../services/webSocketService';
 import { getCryptoCurrencyPrice } from '../utilities/currencyDataUtility';
 import { getApiEndpoints, roundDecimalPlaces } from '../utilities/commonUtility';
+import { currencyList } from '../constants/currency';
 
-const CryptoCurrencyDetails = ({ currencyName, cryptoCurrencyInfo }) => {
+const CryptoCurrencyDetails = ({ currencyName, setCurrencyName, cryptoCurrencyInfo }) => {
     const { name, symbol, diff, percentage, priceUsd } = cryptoCurrencyInfo,
         [cryptoCurrencyPrice, setCryptoCurrencyPrice] = useState(priceUsd);
 
@@ -28,9 +30,17 @@ const CryptoCurrencyDetails = ({ currencyName, cryptoCurrencyInfo }) => {
     }, [priceUsd])
 
     return (
-        <div>
-            <div>
-                {name} <span className="btn btn-secondary">{symbol}</span>
+        <div className="row">
+            <div className="d-flex mb-3 align-items-center">
+                <Dropdown
+                    className="form-select-lg w-50 bg-secondary text-white"
+                    value={currencyName}
+                    onChangeHandler={setCurrencyName}
+                    optionList={currencyList}
+                />
+                <div className="bg-secondary ms-2 p-2 rounded h-fit-content">
+                    {symbol}
+                </div>
             </div>
             <div className="h3">
                 ${roundDecimalPlaces(cryptoCurrencyPrice, 2)}
