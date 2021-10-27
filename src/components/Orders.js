@@ -75,7 +75,7 @@ const Orders = ({ tradeHistory }) => {
                     filter="agTextColumnFilter"
                 />
                 <AgGridColumn
-                    headerName="Quantity"
+                    headerName="Qty"
                     field="volume"
                     filter="agNumberColumnFilter"
                 />
