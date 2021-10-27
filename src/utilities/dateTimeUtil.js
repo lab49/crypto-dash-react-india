@@ -15,15 +15,13 @@ export function getTimestampFromDuration(operation, value, unit) {
     }
 }
 
-export function getFormatedDate(time, format) {
+export function getFormattedDate(time, format) {
     return moment(time).format(format)
 }
 
-
-
 export const dateFormatter = (params) => {
-    const dateParts = params.data.date.split('/');
-    return getFormatedDate(`${dateParts[0]}`, DATE_FORMATS.DDMMYYYYHMMA);
+    const { timestamp } = params.data;
+    return getFormattedDate(timestamp, DATE_FORMATS.DDMMYYYYHMMA);
 }
 
 export const dateComparator = (date1, date2) => {
@@ -36,8 +34,4 @@ export const dateComparatorFilter = (date1, date2) => {
     const date1Moment = moment(date1).startOf(Constants.DAY);
     const date2Moment = moment(date2).startOf(Constants.DAY);
     return date2Moment.diff(date1Moment, Constants.DAYS)
-}
-
-export const getFormattedCurrentDate=(format)=> {
-    return moment().format(format)
 }

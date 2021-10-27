@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import Input from './FormComponents/Input'
 import Button from './FormComponents/Button'
 import { roundDecimalPlaces } from '../utilities/commonUtility'
-import { getFormattedCurrentDate } from '../utilities/dateTimeUtil'
-import { ORDER_TYPE } from "../constants/appConstants"
+import { getCurrentTimestamp } from '../utilities/dateTimeUtil'
+import { ORDER_TYPE, ORDER_STATUS_MAPPING } from "../constants/appConstants"
 
 const CurrencyBuySell = ({ name, price, updateTradeHistory, setShowVolume, availableQty }) => {
     const [cryptoCurrencyVolume, setCryptoCurrencyVolume] = useState(0);
@@ -12,11 +12,12 @@ const CurrencyBuySell = ({ name, price, updateTradeHistory, setShowVolume, avail
     const buySellCryptoCurrency = (buyOrSell) => {
         if (!cryptoCurrencyVolume) return;
         const tradeData = {
-            date: getFormattedCurrentDate('Do MMM YYYY h:mm A'),
+            timestamp: getCurrentTimestamp(),
             currency: name,
             volume: cryptoCurrencyVolume,
             price: cryptoCurrencyPrice,
-            orderType: buyOrSell
+            orderType: buyOrSell,
+            status: ORDER_STATUS_MAPPING.IN_PROGRESS,
         }
         updateTradeHistory(tradeData)
         setShowVolume(true)

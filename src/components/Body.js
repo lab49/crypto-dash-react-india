@@ -4,7 +4,7 @@ import Orders from "./Orders";
 import Trade from "./Trade";
 import { useEffect, useState } from "react";
 import { getDataFromLocalStorage, setDataToLocalStorage } from "../utilities/localStorageUtil";
-import { LOCAL_STORAGE_KEY, ORDER_TYPE } from "../constants/appConstants";
+import { LOCAL_STORAGE_KEY, ORDER_TYPE, ORDER_STATUS_MAPPING } from "../constants/appConstants";
 import { getCryptoCurrencyInfo } from "../services/currencyService";
 import { getDefaultCurrencyValue } from "../constants/currency";
 import CurrencyMarketToday from "./CurrencyMarketToday.js";
@@ -29,7 +29,7 @@ const Body = () => {
     const updateUserWallet = (tradeData) => {
         const currencyName = tradeData.currency;
         userWallet[currencyName] = userWallet[currencyName] ?
-            ORDER_TYPE.BUY === tradeData.orderType ?  (userWallet[currencyName] + tradeData.volume)
+            ORDER_TYPE.BUY === tradeData.orderType ? (userWallet[currencyName] + tradeData.volume)
                 : (userWallet[currencyName] - tradeData.volume)
             : tradeData.volume;
         setUserWallet(userWallet);
@@ -44,6 +44,24 @@ const Body = () => {
         setDataToLocalStorage(LOCAL_STORAGE_KEY.CURRENCY_TRADE_HISTORY, modifiedTradeHistory)
         setTradeHistory(modifiedTradeHistory)
         updateUserWallet(tradeData)
+        updateTradeStatus(tradeData)
+    }
+
+    const updateTradeStatus = (tradeData) => {
+        const randomNumber = Math.random();
+        const modifiedTradeHistory = getDataFromLocalStorage(LOCAL_STORAGE_KEY.CURRENCY_TRADE_HISTORY);
+        setTimeout(() => {
+            const tradeIndex = modifiedTradeHistory.findIndex(({ timestamp }) => timestamp === tradeData.timestamp);
+            const status = randomNumber > 0.5 ? ORDER_STATUS_MAPPING.COMPLETED : ORDER_STATUS_MAPPING.EXPIRED
+
+            modifiedTradeHistory[tradeIndex] = {
+                ...tradeData,
+                status,
+            }
+
+            setDataToLocalStorage(LOCAL_STORAGE_KEY.CURRENCY_TRADE_HISTORY, modifiedTradeHistory)
+            setTradeHistory(modifiedTradeHistory)
+        }, randomNumber * 5000)
     }
 
     return (

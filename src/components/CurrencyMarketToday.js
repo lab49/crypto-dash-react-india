@@ -9,22 +9,30 @@ const CurrencyMarketToday = () => {
 
     useEffect(() => {
         getTopCurrencyInfo()
-            .then((info) => {
-                setTopCurrencyInfo(info)
-            });
+            .then((info) => setTopCurrencyInfo(info));
+
+        const topCurrencyInterval = setInterval(() => {
+            getTopCurrencyInfo()
+                .then((info) => setTopCurrencyInfo(info));
+        }, 60000)
+
+        return () => {
+            clearInterval(topCurrencyInterval)
+        }
     }, [])
 
-    const getCardRow = ({ name, priceUsd, oldPrice, percentage }) => {
+    const getCardRow = ({ name, priceUsd, priceChange, percentageChange }) => {
         return (
             <>
                 <div className="col">
                     {name}
                 </div>
                 <div className="col">
-                    {roundDecimalPlaces(priceUsd, 2)}
+                    {`$${roundDecimalPlaces(priceUsd, 2)}`}
                 </div>
-                <div className={`col ${percentage >= 0 ? "text-success" : "text-danger"}`}>
-                    {`${roundDecimalPlaces(oldPrice, 2)} (${roundDecimalPlaces(percentage, 2)}%)`}
+                <div className={`col ${percentageChange >= 0 ? "text-success" : "text-danger"}`}>
+                    {`$${roundDecimalPlaces(priceChange, 2)}
+                    (${roundDecimalPlaces(percentageChange, 2)}%)`}
                 </div>
             </>
         )
