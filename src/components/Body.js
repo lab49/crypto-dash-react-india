@@ -4,7 +4,7 @@ import Orders from "./Orders";
 import Trade from "./Trade";
 import { useEffect, useState } from "react";
 import { getDataFromLocalStorage, setDataToLocalStorage } from "../utilities/localStorageUtil";
-import { LOCAL_STORAGE_KEY, ORDER_TYPE, ORDER_STATUS_MAPPING } from "../constants/appConstants";
+import { LOCAL_STORAGE_KEY, ORDER_TYPE, ORDER_STATUS_MAPPING, TIME_INTERVAL } from "../constants/appConstants";
 import { getCryptoCurrencyInfo } from "../services/currencyService";
 import { getDefaultCurrencyValue } from "../constants/currency";
 import CurrencyMarketToday from "./CurrencyMarketToday.js";
@@ -67,7 +67,7 @@ const Body = () => {
 
             setDataToLocalStorage(LOCAL_STORAGE_KEY.CURRENCY_TRADE_HISTORY, modifiedTradeHistory)
             setTradeHistory(modifiedTradeHistory)
-        }, randomNumber * 5000)
+        }, randomNumber * TIME_INTERVAL.ORDER_STATUS_SYNC)
     }
 
     return (

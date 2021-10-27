@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { getTopCurrencyInfo } from '../services/currencyService'
 import { roundDecimalPlaces } from '../utilities/commonUtility'
+import { TIME_INTERVAL } from '../constants/appConstants'
 
 const CurrencyMarketToday = () => {
     const [topCurrencyInfo, setTopCurrencyInfo] = useState({});
@@ -14,7 +15,7 @@ const CurrencyMarketToday = () => {
         const topCurrencyInterval = setInterval(() => {
             getTopCurrencyInfo()
                 .then((info) => setTopCurrencyInfo(info));
-        }, 60000)
+        }, TIME_INTERVAL.BIGGEST_WINNER_LOOSER_SYNC)
 
         return () => {
             clearInterval(topCurrencyInterval)

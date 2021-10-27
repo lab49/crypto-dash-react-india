@@ -32,11 +32,16 @@ export const ORDER_STATUS_MAPPING = {
 }
 
 export const DATE_FORMATS = {
-    DDMMYYYYHMMA: 'DD/MM/YYYY h:mm a',
+    DDMMYYYYHMMA: 'DD/MM/YYYY h:mm:ss a',
 }
 
 export const Constants = {
     MS: 'ms',
     DAY: 'day',
     DAYS: 'days',
+}
+
+export const TIME_INTERVAL = {
+    ORDER_STATUS_SYNC: 5000,
+    BIGGEST_WINNER_LOOSER_SYNC: 60000,
 }
