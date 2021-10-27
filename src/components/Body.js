@@ -43,7 +43,6 @@ const Body = () => {
 
         setDataToLocalStorage(LOCAL_STORAGE_KEY.CURRENCY_TRADE_HISTORY, modifiedTradeHistory)
         setTradeHistory(modifiedTradeHistory)
-        updateUserWallet(tradeData)
         updateTradeStatus(tradeData)
     }
 
@@ -52,7 +51,14 @@ const Body = () => {
         const modifiedTradeHistory = getDataFromLocalStorage(LOCAL_STORAGE_KEY.CURRENCY_TRADE_HISTORY);
         setTimeout(() => {
             const tradeIndex = modifiedTradeHistory.findIndex(({ timestamp }) => timestamp === tradeData.timestamp);
-            const status = randomNumber > 0.5 ? ORDER_STATUS_MAPPING.COMPLETED : ORDER_STATUS_MAPPING.EXPIRED
+            let status;
+
+            if (randomNumber > 0.5) {
+                status = ORDER_STATUS_MAPPING.COMPLETED;
+                updateUserWallet(tradeData)
+            } else {
+                status = ORDER_STATUS_MAPPING.EXPIRED
+            }
 
             modifiedTradeHistory[tradeIndex] = {
                 ...tradeData,
@@ -75,7 +81,7 @@ const Body = () => {
                     />
                 </div>
                 <div className="col-5">
-                    <CurrencyMarketToday />
+                    <CurrencyMarketToday/>
                 </div>
                 <div className="col-4">
                     <div className="card bg-transparent border-light">
