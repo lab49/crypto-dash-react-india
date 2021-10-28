@@ -4,7 +4,7 @@ import Orders from "./Orders";
 import Trade from "./Trade";
 import { useEffect, useState } from "react";
 import { getDataFromLocalStorage, setDataToLocalStorage } from "../utilities/localStorageUtil";
-import { LOCAL_STORAGE_KEY, ORDER_TYPE } from "../constants/appConstants";
+import { LOCAL_STORAGE_KEY, ORDER_TYPE, ORDER_STATUS_MAPPING, TIME_INTERVAL } from "../constants/appConstants";
 import { getCryptoCurrencyInfo } from "../services/currencyService";
 import { getDefaultCurrencyValue } from "../constants/currency";
 import CurrencyMarketToday from "./CurrencyMarketToday.js";
@@ -47,7 +47,31 @@ const Body = () => {
 
         setDataToLocalStorage(LOCAL_STORAGE_KEY.CURRENCY_TRADE_HISTORY, modifiedTradeHistory)
         setTradeHistory(modifiedTradeHistory)
-        updateUserWallet(tradeData)
+        updateTradeStatus(tradeData)
+    }
+
+    const updateTradeStatus = (tradeData) => {
+        const randomNumber = Math.random();
+        const modifiedTradeHistory = getDataFromLocalStorage(LOCAL_STORAGE_KEY.CURRENCY_TRADE_HISTORY);
+        setTimeout(() => {
+            const tradeIndex = modifiedTradeHistory.findIndex(({ timestamp }) => timestamp === tradeData.timestamp);
+            let status;
+
+            if (randomNumber > 0.5) {
+                status = ORDER_STATUS_MAPPING.COMPLETED;
+                updateUserWallet(tradeData)
+            } else {
+                status = ORDER_STATUS_MAPPING.EXPIRED
+            }
+
+            modifiedTradeHistory[tradeIndex] = {
+                ...tradeData,
+                status,
+            }
+
+            setDataToLocalStorage(LOCAL_STORAGE_KEY.CURRENCY_TRADE_HISTORY, modifiedTradeHistory)
+            setTradeHistory(modifiedTradeHistory)
+        }, randomNumber * TIME_INTERVAL.ORDER_STATUS_SYNC)
     }
 
     return (
@@ -61,7 +85,7 @@ const Body = () => {
                     />
                 </div>
                 <div className="col-5">
-                    <CurrencyMarketToday />
+                    <CurrencyMarketToday/>
                 </div>
                 <div className="col-4">
                     <div className="card bg-transparent border-light">

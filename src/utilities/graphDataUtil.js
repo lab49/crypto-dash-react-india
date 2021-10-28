@@ -1,5 +1,5 @@
 import { dayUnits } from '../constants/appConstants'
-import { getFormatedDate } from './dateTimeUtil'
+import { getFormattedDate } from './dateTimeUtil'
 
 let graphOptions = {
     title: { text: '' },
@@ -44,7 +44,7 @@ const getGraphDateFormat = (unit) => {
 
 const getGraphPeriods = (graphData, key, unit) => {
     const format = getGraphDateFormat(unit);
-    return graphData.map(data => getFormatedDate(data[key], format))
+    return graphData.map(data => getFormattedDate(data[key], format))
 }
 
 const getGraphDataPoints = (graphData, key) => {

@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@lab49/react-value-flash": "^0.1.4",
     "ag-grid-community": "^26.1.0",
     "ag-grid-react": "^26.1.0",
     "axios": "^0.22.0",

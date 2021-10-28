@@ -54,14 +54,18 @@ select {
   height: fit-content;
 }
 
+.w-fit-content {
+  width: fit-content;
+}
+
 .row {
-  margin: 0px !important;
-  padding: 0px !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 .row > * {
-  margin: 0px !important;
-  padding: 0px !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 .block-card {

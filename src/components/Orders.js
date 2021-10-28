@@ -1,33 +1,19 @@
 import { useEffect, useState } from 'react';
-import { AgGridReact } from 'ag-grid-react';
+import { AgGridReact, AgGridColumn } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine-dark.css';
 import { dateFormatter, dateComparator, dateComparatorFilter } from "../utilities/dateTimeUtil";
+import { ORDER_STATUS_MAPPING } from '../constants/appConstants';
 
 const Orders = ({ tradeHistory }) => {
     const [gridApi, setGridApi] = useState(null),
         [gridColumnApi, setGridColumnApi] = useState(null),
-        columnDefs = [
-            {
-                headerName: 'Date',
-                field: 'date',
-                sortable: true,
-                valueFormatter: dateFormatter,
-                width: 15,
-                filter: 'agDateColumnFilter',
-                comparator:dateComparator,
-                filterParams: {
-                    debounceMs: 500,
-                    suppressAndOrCondition: true,
-                    comparator: dateComparatorFilter
-            }
-            },
-            { headerName: 'Currency', field: 'currency', sortable: true, filter: 'agTextColumnFilter' },
-            { headerName: 'Buy/Sell', field: 'orderType', sortable: true },
-            { headerName: 'Quantity', field: 'volume', sortable: true, filter: 'agNumberColumnFilter' },
-            { headerName: 'Price', field: 'price', sortable: true, filter: 'agNumberColumnFilter' },
-            { headerName: 'Status', field: 'status', sortable: true, filter: 'agTextColumnFilter' }
-        ]
+        defaultColDef = {
+            flex: 1,
+            minWidth: 100,
+            sortable: true,
+            resizable: true,
+        }
 
     const onGridReady = (params) => {
         setGridApi(params.api);
@@ -36,11 +22,7 @@ const Orders = ({ tradeHistory }) => {
 
     useEffect(() => {
         if (gridColumnApi) {
-            let allColumnIds = [];
-            gridColumnApi.getAllColumns().forEach(function (column) {
-                allColumnIds.push(column.colId);
-            });
-            gridColumnApi.autoSizeColumns(allColumnIds);
+            gridColumnApi.autoSizeAllColumns();
         }
 
         if (gridApi) {
@@ -48,15 +30,67 @@ const Orders = ({ tradeHistory }) => {
         }
     }, [gridApi, gridColumnApi])
 
+    const statusStyleClass = (params) => {
+        switch (params.data.status) {
+            case ORDER_STATUS_MAPPING.IN_PROGRESS:
+                return "bg-warning text-dark";
+            case ORDER_STATUS_MAPPING.COMPLETED:
+                return "bg-success";
+            case ORDER_STATUS_MAPPING.EXPIRED:
+                return "bg-danger";
+            default:
+                return "bg-transparent";
+        }
+    }
 
     return (
         <div id="myGrid" className="ag-theme-alpine-dark">
             <h3>Your Orders</h3>
             <AgGridReact
-                columnDefs={columnDefs}
+                defaultColDef={defaultColDef}
                 rowData={Array.isArray(tradeHistory) ? tradeHistory : []}
                 onGridReady={onGridReady}
-            />
+                enableCellChangeFlash={true}
+            >
+                <AgGridColumn
+                    headerName="Date"
+                    field="timestamp"
+                    valueFormatter={dateFormatter}
+                    comparator={dateComparator}
+                    filter="agDateColumnFilter"
+                    filterParams={{
+                        debounceMs: 500,
+                        suppressAndOrCondition: true,
+                        comparator: dateComparatorFilter,
+                    }}
+                />
+                <AgGridColumn
+                    headerName="Currency"
+                    field="currency"
+                    filter="agTextColumnFilter"
+                />
+                <AgGridColumn
+                    headerName="Buy/Sell"
+                    field="orderType"
+                    filter="agTextColumnFilter"
+                />
+                <AgGridColumn
+                    headerName="Qty"
+                    field="volume"
+                    filter="agNumberColumnFilter"
+                />
+                <AgGridColumn
+                    headerName="Price"
+                    field="price"
+                    filter="agNumberColumnFilter"
+                />
+                <AgGridColumn
+                    headerName="Status"
+                    field="status"
+                    filter="agTextColumnFilter"
+                    cellClass={statusStyleClass}
+                />
+            </AgGridReact>
         </div>
     )
 }

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { ArrowDownRight, ArrowUpRight } from 'react-bootstrap-icons';
+import { Flash } from '@lab49/react-value-flash';
 import Dropdown from "./FormComponents/Dropdown";
 import { apiNames } from '../constants/endpointConstants';
 import { closeWebSocket, initializeWebSocket } from '../services/webSocketService';
@@ -8,7 +9,7 @@ import { getApiEndpoints, roundDecimalPlaces } from '../utilities/commonUtility'
 import { currencyList } from '../constants/currency';
 
 const CryptoCurrencyDetails = ({ currencyName, setCurrencyName, cryptoCurrencyInfo }) => {
-    const { name, symbol, diff, percentage, priceUsd } = cryptoCurrencyInfo,
+    const { symbol, diff, percentage, priceUsd } = cryptoCurrencyInfo,
         [cryptoCurrencyPrice, setCryptoCurrencyPrice] = useState(priceUsd);
 
     useEffect(() => {
@@ -43,7 +44,11 @@ const CryptoCurrencyDetails = ({ currencyName, setCurrencyName, cryptoCurrencyIn
                 </div>
             </div>
             <div className="h3">
-                ${roundDecimalPlaces(cryptoCurrencyPrice, 2)}
+                <Flash
+                    stylePrefix="p-1 w-fit-content"
+                    formatter="currency"
+                    value={roundDecimalPlaces(cryptoCurrencyPrice, 4)}
+                />
             </div>
             <div className="h6">
                 {

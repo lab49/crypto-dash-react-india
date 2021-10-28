@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { getTopCurrencyInfo } from '../services/currencyService'
 import { roundDecimalPlaces } from '../utilities/commonUtility'
+import { TIME_INTERVAL } from '../constants/appConstants'
 
 const CurrencyMarketToday = () => {
     const [topCurrencyInfo, setTopCurrencyInfo] = useState({});
@@ -9,22 +10,30 @@ const CurrencyMarketToday = () => {
 
     useEffect(() => {
         getTopCurrencyInfo()
-            .then((info) => {
-                setTopCurrencyInfo(info)
-            });
+            .then((info) => setTopCurrencyInfo(info));
+
+        const topCurrencyInterval = setInterval(() => {
+            getTopCurrencyInfo()
+                .then((info) => setTopCurrencyInfo(info));
+        }, TIME_INTERVAL.BIGGEST_WINNER_LOOSER_SYNC)
+
+        return () => {
+            clearInterval(topCurrencyInterval)
+        }
     }, [])
 
-    const getCardRow = ({ name, priceUsd, oldPrice, percentage }) => {
+    const getCardRow = ({ name, priceUsd, priceChange, percentageChange }) => {
         return (
             <>
                 <div className="col">
                     {name}
                 </div>
                 <div className="col">
-                    {roundDecimalPlaces(priceUsd, 2)}
+                    {`$${roundDecimalPlaces(priceUsd, 2)}`}
                 </div>
-                <div className={`col ${percentage >= 0 ? "text-success" : "text-danger"}`}>
-                    {`${roundDecimalPlaces(oldPrice, 2)} (${roundDecimalPlaces(percentage, 2)}%)`}
+                <div className={`col ${percentageChange >= 0 ? "text-success" : "text-danger"}`}>
+                    {`$${roundDecimalPlaces(priceChange, 2)}
+                    (${roundDecimalPlaces(percentageChange, 2)}%)`}
                 </div>
             </>
         )
