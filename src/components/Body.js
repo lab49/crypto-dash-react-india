@@ -7,7 +7,7 @@ import { getDataFromLocalStorage, setDataToLocalStorage } from "../utilities/loc
 import { LOCAL_STORAGE_KEY, ORDER_TYPE, ORDER_STATUS_MAPPING, TIME_INTERVAL } from "../constants/appConstants";
 import { getCryptoCurrencyInfo } from "../services/currencyService";
 import { getDefaultCurrencyValue } from "../constants/currency";
-import CurrencyMarketToday from "./CurrencyMarketToday";
+import CurrencyMarketToday from "./CurrencyMarketToday.js";
 
 const Body = () => {
 

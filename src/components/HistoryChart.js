@@ -7,13 +7,7 @@ import { getCryptoPriceGraphData } from '../services/currencyService'
 
 const HistoryChart = ({ currencyName }) => {
     const [activeRange, setActiveRange] = useState(0),
-        [options, setOptions] = useState({
-            chart: {
-                backgroundColor: '#343a40',
-                height: 350,
-                type: 'line',
-            },
-        });
+        [options, setOptions] = useState({});
 
     useEffect(() => {
         const { value, unit } = graphRanges[activeRange]
