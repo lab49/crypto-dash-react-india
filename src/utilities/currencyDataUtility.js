@@ -24,34 +24,42 @@ export const formatCryptoCurrencyInfo = ({ name, symbol, priceUsd, changePercent
 
 const filterCurrencyList = (list) => {
     const currencyNameList = currencyList.map(({ value }) => value);
+    let filteredList = []
 
-    return list.filter(({ id }) => currencyNameList.includes((id)));
+    list.forEach(item => {
+        if (currencyNameList.includes(item.id)) {
+            filteredList.push(getTopCurrencyDetails(item))
+        }
+    })
+
+    return filteredList;
 }
 
-const getTopCurrencyDetails = ({ name, priceUsd, changePercent24Hr }) => ({
+const getTopCurrencyDetails = ({ id, name, symbol, priceUsd, changePercent24Hr }) => ({
+    id,
     name,
     priceUsd,
-    percentageChange: changePercent24Hr,
+    symbol,
+    percentageChange: parseFloat(changePercent24Hr),
     priceChange: Math.abs(getPriceChange(priceUsd, changePercent24Hr)),
 })
 
+const sortList = (list, key) => {
+    return list.sort((currency1, currency2) => {
+        return currency1[key] - currency2[key];
+    })
+}
+
 export const getBiggestWinnerAndLoosers = (currencyList) => {
-    let biggestWinner = null;
-    let biggestLooser = null;
+    let biggestWinner = [];
+    let biggestLooser = [];
 
     if (Array.isArray(currencyList)) {
         const filteredCurrencyList = filterCurrencyList(currencyList);
+        const sortedList = sortList(filteredCurrencyList, 'percentageChange')
 
-        filteredCurrencyList.forEach(currency => {
-            const percentage = parseFloat(currency.changePercent24Hr);
-
-            if (!biggestLooser || biggestLooser.percentageChange > percentage) {
-                biggestLooser = getTopCurrencyDetails(currency);
-            } else if (!biggestWinner || biggestWinner.percentageChange < percentage) {
-                biggestWinner = getTopCurrencyDetails(currency);
-            }
-        })
+        biggestLooser = sortedList.slice(0, 3)
+        biggestWinner = sortedList.slice(-3, sortedList.length).reverse()
     }
-
     return { biggestWinner, biggestLooser };
 }
