@@ -49,6 +49,7 @@ const CryptoCurrencyCard = ({ id, name, symbol, percentageChange }) => {
                             <div className="negative-value">
                                 <ChevronDoubleDown/>
                                 <span className="ms-1">{`${Math.abs(percentage)} %`}</span>
+                                {/*<span className="float-right">{`$${roundDecimalPlaces(priceChange, 2)}`}</span>*/}
                             </div>
                         )
                     }
