@@ -23,7 +23,8 @@ const Orders = ({ tradeHistory }) => {
             }
             },
             { headerName: 'Currency', field: 'currency', sortable: true, filter: 'agTextColumnFilter' },
-            { headerName: 'Volume', field: 'volume', sortable: true, filter: 'agNumberColumnFilter' },
+            { headerName: 'Buy/Sell', field: 'orderType', sortable: true },
+            { headerName: 'Quantity', field: 'volume', sortable: true, filter: 'agNumberColumnFilter' },
             { headerName: 'Price', field: 'price', sortable: true, filter: 'agNumberColumnFilter' },
             { headerName: 'Status', field: 'status', sortable: true, filter: 'agTextColumnFilter' }
         ]
