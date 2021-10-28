@@ -60,14 +60,6 @@ select {
   width: fit-content;
 }
 
-.float-right {
-  float: right;
-}
-
-input[type=number] {
-  -moz-appearance: textfield;
-}
-
 .row {
   margin: 0 !important;
   padding: 0 !important;
@@ -75,6 +67,10 @@ input[type=number] {
 .row > * {
   margin: 0 !important;
   padding: 0 !important;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
 }
 
 input[type=number]::-webkit-inner-spin-button,
