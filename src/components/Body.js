@@ -26,13 +26,17 @@ const Body = () => {
             });
     }, [currencyName])
 
-    const updateUserWallet = (tradeData) => {
+    function updateCurrencyCount(tradeData) {
         const currencyName = tradeData.currency;
         userWallet[currencyName] = userWallet[currencyName] ?
             ORDER_TYPE.BUY === tradeData.orderType ? (userWallet[currencyName] + tradeData.volume)
                 : (userWallet[currencyName] - tradeData.volume)
             : tradeData.volume;
         setUserWallet(userWallet);
+    }
+
+    const updateUserWallet = (tradeData) => {
+        updateCurrencyCount(tradeData);
         setDataToLocalStorage(LOCAL_STORAGE_KEY.USER_ACCOUNT_WALLET, userWallet)
     }
 

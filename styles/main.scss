@@ -1,0 +1,40 @@
+.app-body {
+    background: rgba(34, 37, 45, 0.8);
+    backdrop-filter: blur(120px);
+    height: 100vh;
+  
+    .main {
+      padding: 0 20px !important;
+    }
+  
+    .side-bar {
+      @extend .block-card;
+      margin-bottom: 0;
+    }
+  
+    .search-bar {
+      flex-basis: 8%;
+    }
+  
+    .largest-movers{
+      @extend .block-card;
+      flex-basis: 40%;
+    }
+  
+    .live-chart {
+      @extend .block-card;
+      flex-grow: 1;
+    }
+  
+    .quick-trade{
+      @extend .block-card;
+      flex-basis: 35%;
+      margin-left: 1rem;
+    }
+  
+    .orders {
+      @extend .block-card;
+      flex-grow: 1;
+      margin-left: 1rem;
+    }
+  }
