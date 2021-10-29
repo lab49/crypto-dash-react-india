@@ -7,7 +7,7 @@ import { getDataFromLocalStorage, setDataToLocalStorage } from "../utilities/loc
 import { LOCAL_STORAGE_KEY, ORDER_TYPE, ORDER_STATUS_MAPPING, TIME_INTERVAL } from "../constants/appConstants";
 import { getCryptoCurrencyInfo } from "../services/currencyService";
 import { getDefaultCurrencyValue } from "../constants/currency";
-import CurrencyMarketToday from "./CurrencyMarketToday.js";
+import CurrencyMarketToday from "./CurrencyMarketToday";
 
 const Body = () => {
 
@@ -77,17 +77,17 @@ const Body = () => {
     return (
         <div className="body row mx-2 py-4">
             <div className="row">
-                <div className="col-3">
+                <div className="col-2">
                     <CryptoCurrencyDetails
                         currencyName={currencyName}
                         setCurrencyName={setCurrencyName}
                         cryptoCurrencyInfo={cryptoCurrencyInfo}
                     />
                 </div>
-                <div className="col-5">
+                <div className="col-7">
                     <CurrencyMarketToday/>
                 </div>
-                <div className="col-4">
+                <div className="col-3">
                     <div className="card bg-transparent border-light">
                         <div className="card-body">
                             <Trade

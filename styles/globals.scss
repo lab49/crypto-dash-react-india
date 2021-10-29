@@ -5,7 +5,7 @@ body {
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   background-color: #343a40 !important;
 }
 
@@ -29,10 +29,12 @@ a {
 
 .btn-graph {
   color: grey !important;
+
   &:hover,
   &.active {
     color: white !important;
   }
+
   &:focus {
     box-shadow: none !important;
   }
@@ -58,24 +60,9 @@ select {
   width: fit-content;
 }
 
-.row {
-  margin: 0 !important;
-  padding: 0 !important;
+.float-right {
+  float: right;
 }
-
-.row > * {
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-.block-card {
-  background: radial-gradient(50% 157.72% at 0% 0%, rgba(239, 239, 239, 0.05) 0%, rgba(255, 255, 255, 0.05) 100%);
-  box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.32);
-  backdrop-filter: blur(400px);
-  margin-bottom: 20px;
-}
-
-@import "main.scss";
 
 input[type=number] {
   -moz-appearance: textfield;
@@ -87,4 +74,57 @@ input[type=number]::-webkit-outer-spin-button {
   -moz-appearance: none;
   appearance: none;
   margin: 0;
+}
+
+.block-card {
+  background: radial-gradient(50% 157.72% at 0% 0%, rgba(239, 239, 239, 0.05) 0%, rgba(255, 255, 255, 0.05) 100%);
+  box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.32);
+  backdrop-filter: blur(400px);
+  margin-bottom: 20px;
+}
+
+@import "main.scss";
+
+.positive-value {
+  color: #14CC9E;
+}
+
+.negative-value {
+  color: #F85737;
+}
+
+.winner-looser-card {
+  padding: 20px;
+  background: radial-gradient(50% 157.72% at 0% 0%, rgba(239, 239, 239, 0.05) 0%, rgba(255, 255, 255, 0.05) 100%);
+  backdrop-filter: blur(400px);
+  font-family: Rubik;
+  font-size: 16px;
+
+  .winner-looser-card-title {
+    margin-left: 10px;
+    height: 24px;
+    font-weight: bold;
+    line-height: 24px;
+    text-transform: uppercase;
+    color: #C4C4C4;
+  }
+
+  .winner-looser-card-body {
+    margin-top: 10px;
+    background-color: rgba(0, 0, 0, 0.05);
+    backdrop-filter: blur(400px);
+    border-radius: 8px;
+    padding: 15px;
+
+    .name {
+      color: #EFEFEF;
+      line-height: 19px;
+    }
+
+    .symbol {
+      color: #999999;
+      font-size: 12px;
+      line-height: 14px;
+    }
+  }
 }
