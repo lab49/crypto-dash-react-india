@@ -24,13 +24,9 @@ export const formatCryptoCurrencyInfo = ({ name, symbol, priceUsd, changePercent
 
 const filterCurrencyList = (list) => {
     const currencyNameList = currencyList.map(({ value }) => value);
-    let filteredList = []
-
-    list.forEach(item => {
-        if (currencyNameList.includes(item.id)) {
-            filteredList.push(getTopCurrencyDetails(item))
-        }
-    })
+    let filteredList = list
+        .filter(item => currencyNameList.includes(item.id))
+        .map(item => getTopCurrencyDetails(item));
 
     return filteredList;
 }
@@ -45,9 +41,7 @@ const getTopCurrencyDetails = ({ id, name, symbol, priceUsd, changePercent24Hr }
 })
 
 const sortList = (list, key) => {
-    return list.sort((currency1, currency2) => {
-        return currency1[key] - currency2[key];
-    })
+    return list.sort((currency1, currency2) => currency1[key] - currency2[key])
 }
 
 export const getBiggestWinnerAndLoosers = (currencyList) => {
@@ -61,5 +55,6 @@ export const getBiggestWinnerAndLoosers = (currencyList) => {
         biggestLooser = sortedList.slice(0, 3)
         biggestWinner = sortedList.slice(-3, sortedList.length).reverse()
     }
+
     return { biggestWinner, biggestLooser };
 }

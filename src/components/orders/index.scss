@@ -1,0 +1,10 @@
+#myGrid {
+  max-height: 400px;
+  overflow: auto;
+
+  .ag-row .ag-cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

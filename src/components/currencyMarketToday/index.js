@@ -33,7 +33,7 @@ const CurrencyMarketToday = () => {
                     {
                         Array.isArray(biggestWinner) && biggestWinner.length ?
                             biggestWinner.map(winner => <CryptoCurrencyCard key={winner.name} {...winner} />) :
-                            <div className="col">N.A.</div>
+                            <div className="col no-mover">N.A.</div>
                     }
                 </div>
                 <div className="col">
@@ -44,7 +44,7 @@ const CurrencyMarketToday = () => {
                     {
                         Array.isArray(biggestLooser) && biggestLooser.length ?
                             biggestLooser.map(winner => <CryptoCurrencyCard key={winner.name} {...winner} />) :
-                            <div className="col">N.A.</div>
+                            <div className="col no-mover">N.A.</div>
                     }
                 </div>
             </div>

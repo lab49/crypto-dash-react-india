@@ -14,7 +14,7 @@ const CryptoCurrencyCard = ({ id, name, symbol, percentageChange }) => {
     const [cardOptions, setCardOptions] = useState({
         chart: {
             backgroundColor: '#343a40',
-            height: 50,
+            height: 40,
             type: 'line',
         },
     });
@@ -32,7 +32,7 @@ const CryptoCurrencyCard = ({ id, name, symbol, percentageChange }) => {
         <div className="winner-looser-card-body">
             <div className="row">
                 <div className="col-2 d-flex align-items-center">
-                    <Image src={currencyImagePaths[name] || "abc"} width="40" height="40" alt={name} />
+                    <Image src={currencyImagePaths[name]} width="32" height="32" alt={name}/>
                 </div>
                 <div className="col">
                     <div>
@@ -49,7 +49,6 @@ const CryptoCurrencyCard = ({ id, name, symbol, percentageChange }) => {
                             <div className="negative-value">
                                 <ChevronDoubleDown/>
                                 <span className="ms-1">{`${Math.abs(percentage)} %`}</span>
-                                {/*<span className="float-right">{`$${roundDecimalPlaces(priceChange, 2)}`}</span>*/}
                             </div>
                         )
                     }

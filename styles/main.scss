@@ -1,40 +1,51 @@
-.app-body {
+.app-background {
+  height: 100vh;
+  background-image: url('/background.svg');
+  background-size: 100% 100%;
+  font-family: 'Rubik', sans-serif;
+  color: $textMuted;
+
+  .app-body {
     background: rgba(34, 37, 45, 0.8);
     backdrop-filter: blur(120px);
     height: 100vh;
-  
+
     .main {
-      padding: 0 20px !important;
+      padding: 0 10px !important;
     }
-  
+
     .side-bar {
       @extend .block-card;
       margin-bottom: 0;
     }
-  
+
     .search-bar {
       flex-basis: 8%;
     }
-  
-    .largest-movers{
+
+    section {
+      margin: 10px;
+    }
+
+    .largest-movers {
       @extend .block-card;
       flex-basis: 40%;
     }
-  
+
     .live-chart {
       @extend .block-card;
       flex-grow: 1;
     }
-  
-    .quick-trade{
+
+    .quick-trade {
       @extend .block-card;
       flex-basis: 35%;
-      margin-left: 1rem;
     }
-  
+
     .orders {
       @extend .block-card;
       flex-grow: 1;
-      margin-left: 1rem;
+      padding: 10px;
     }
   }
+}

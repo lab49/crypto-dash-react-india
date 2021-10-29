@@ -98,7 +98,7 @@ export const modifyOptionsForCard = (options) => {
     let modifiedOptions = JSON.parse(JSON.stringify(options))
     if (Object.keys(modifiedOptions).length) {
         modifiedOptions.chart.backgroundColor = 'transparent';
-        modifiedOptions.chart.height = 50;
+        modifiedOptions.chart.height = 40;
         modifiedOptions.xAxis.lineWidth = 0;
         modifiedOptions.xAxis.labels.enabled = false;
         modifiedOptions.yAxis.gridLineWidth = 0;
