@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { ArrowDownRight, ArrowUpRight } from 'react-bootstrap-icons';
 import { Flash } from '@lab49/react-value-flash';
-import Dropdown from "./FormComponents/Dropdown";
+import CurrencyDropdown from "./common/CurrencyDropdown";
 import { apiNames } from '../constants/endpointConstants';
 import { closeWebSocket, initializeWebSocket } from '../services/webSocketService';
 import { getCryptoCurrencyPrice } from '../utilities/currencyDataUtility';
@@ -33,15 +33,12 @@ const CryptoCurrencyDetails = ({ currencyName, setCurrencyName, cryptoCurrencyIn
     return (
         <div className="row">
             <div className="d-flex mb-3 align-items-center">
-                <Dropdown
-                    className="form-select-lg w-50 bg-secondary text-white"
+                <CurrencyDropdown
                     value={currencyName}
                     onChangeHandler={setCurrencyName}
                     optionList={currencyList}
+                    keyPrefix={'cyrpto_details'}
                 />
-                <div className="bg-secondary ms-2 p-2 rounded h-fit-content">
-                    {symbol}
-                </div>
             </div>
             <div className="h3">
                 <Flash

@@ -1,15 +1,15 @@
 export const currencyList = [
-    { label: 'Bitcoin', value: 'bitcoin' },
-    { label: 'Ethereum', value: 'ethereum' },
-    { label: 'Binance Coin', value: 'binance-coin' },
-    { label: 'Cardano', value: 'cardano' },
-    { label: 'Dogecoin', value: 'dogecoin' },
-    { label: 'Ripple', value: 'xrp' },
-    { label: 'Litecoin', value: 'litecoin' },
-    { label: 'Stellar', value: 'stellar' },
-    { label: 'Monero', value: 'monero' },
-    { label: 'Dash', value: 'dash' },
-    { label: 'Bitcoin Diamond', value: 'bitcoin-diamond' },
+    { label: 'Bitcoin', value: 'bitcoin', symbol: 'BTC' },
+    { label: 'Ethereum', value: 'ethereum', symbol: 'ETH' },
+    { label: 'Binance Coin', value: 'binance-coin', symbol: 'BC' },
+    { label: 'Cardano', value: 'cardano', symbol: 'ADA' },
+    { label: 'Dogecoin', value: 'dogecoin', symbol: 'DOGE' },
+    { label: 'Litecoin', value: 'litecoin', symbol: 'LTC' },
+    { label: 'Stellar', value: 'stellar', symbol: 'XLM' },
+    { label: 'Monero', value: 'monero', symbol: 'XMR' },
+    { label: 'Dash', value: 'dash', symbol: 'DASH' },
+    { label: 'Bitcoin Diamond', value: 'bitcoin-diamond', symbol: 'BCD' },
+    { label: 'XRP', value: 'xrp', symbol: 'XRP' },
 ];
 
 export const currencyImagePaths = {
@@ -18,12 +18,13 @@ export const currencyImagePaths = {
     'Binance Coin': '/Binance Coin (BNB).svg',
     'Cardano': '/Cardano.svg',
     'Dogecoin': '/Dogecoin (DOGE).svg',
-    'XRP': '/Ripple.svg',
+    'Ripple': '/Ripple.svg',
     'Litecoin': '/Lite.svg',
     'Stellar': '/Stellar.svg',
     'Monero': '/Monero.svg',
     'Dash': '/Dash.svg',
-    'Bitcoin Diamond': '/Bitcoin Diamond (BCD).svg'
+    'Bitcoin Diamond': '/Bitcoin Diamond (BCD).svg',
+    'XRP': '/Ripple.svg',
 }
 
 export const getDefaultCurrencyValue = () => {

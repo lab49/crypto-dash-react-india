@@ -1,5 +1,5 @@
 import React from 'react'
-import Button from './FormComponents/Button'
+import Button from './common/formComponents/Button'
 import { roundDecimalPlaces } from '../utilities/commonUtility'
 
 const CurrencyStats = ({ volume, setShowVolume }) => {

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import Input from './FormComponents/Input'
-import Button from './FormComponents/Button'
+import Input from './common/formComponents/Input'
+import Button from './common/formComponents/Button'
 import { roundDecimalPlaces } from '../utilities/commonUtility'
 import { getCurrentTimestamp } from '../utilities/dateTimeUtil'
 import { ORDER_TYPE, ORDER_STATUS_MAPPING } from "../constants/appConstants"
