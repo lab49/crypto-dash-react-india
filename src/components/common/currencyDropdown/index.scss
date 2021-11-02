@@ -1,0 +1,26 @@
+.dropdown-item,
+.dropdown {
+  padding: 0px !important;
+  .currency-row {
+    .currency-image {
+      height: 90%;
+      img {
+        min-height: 80% !important;
+      }
+    }
+
+    .currency-name {
+      font-size: 20px;
+      padding-left: 4px;
+    }
+
+    .currency-symbol {
+      font-size: 14px;
+      padding-left: 4px;
+    }
+  }
+}
+
+.dropdown-toggle::after {
+  margin-right: 4px;
+}
