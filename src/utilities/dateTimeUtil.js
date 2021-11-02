@@ -21,7 +21,7 @@ export function getFormattedDate(time, format) {
 
 export const dateFormatter = (params) => {
     const { timestamp } = params.data;
-    return getFormattedDate(timestamp, DATE_FORMATS.DDMMYYYYHMMA);
+    return getFormattedDate(timestamp, DATE_FORMATS.DDMMYYYYHMM);
 }
 
 export const dateComparator = (date1, date2) => {

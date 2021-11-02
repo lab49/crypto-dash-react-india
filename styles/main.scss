@@ -1,6 +1,6 @@
 .app-background {
   height: 100vh;
-  background-image: url('/background.svg');
+  background-image: url($backgroundImageUrl);
   background-size: 100% 100%;
   font-family: 'Rubik', sans-serif;
   color: $textMuted;
@@ -11,12 +11,14 @@
     height: 100vh;
 
     .main {
-      padding: 0 10px !important;
+      padding: 0 5px;
     }
 
     .side-bar {
       @extend .block-card;
+      height: 100vh;
       margin-bottom: 0;
+      margin-right: 5px;
     }
 
     .search-bar {
@@ -24,7 +26,7 @@
     }
 
     section {
-      margin: 10px;
+      margin: 5px;
     }
 
     .largest-movers {

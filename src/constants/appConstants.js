@@ -32,7 +32,7 @@ export const ORDER_STATUS_MAPPING = {
 }
 
 export const DATE_FORMATS = {
-    DDMMYYYYHMMA: 'DD/MM/YYYY h:mm:ss a',
+    DDMMYYYYHMM: 'DD/MM/YYYY H:mm:ss',
 }
 
 export const Constants = {
