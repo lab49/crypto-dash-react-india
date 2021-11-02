@@ -1,0 +1,80 @@
+.section {
+
+  background: transparent;
+  padding: 10px 20px;
+  padding-bottom: 25px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+
+  header {
+    color: #c4c4c4;
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: $textSecondary;
+  }
+
+  .input-container {
+    display: flex;
+    justify-content: space-between;
+    height: 35px;
+    select {
+      font-size: 16px;
+      padding: 4px;
+    }
+
+    .trade-price {
+      width: 45%;
+
+      &:before {
+        position: absolute;
+        content: "$";
+        padding-top: 7px;
+        padding-left: 8px;
+      }
+
+    
+      input {
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0.18) 12.05%, rgba(38, 41, 46, 0) 100%);
+        box-shadow: inset 2px 3px 8px rgba(0, 0, 0, 0.25);
+        border-radius: 8px;
+        border-color: transparent;
+        padding-left: 19px;
+
+        &:focus {
+          border-color: transparent !important;
+          box-shadow: inset 2px 3px 8px rgba(0, 0, 0, 0.25) !important;
+        }
+      }
+    }
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    flex-grow: 1;
+
+    Button {
+      font-size: 16px;
+      color: #999999;
+      border: 1px solid transparent;
+      background: none;
+      font-weight: normal;
+
+      &:hover {
+        border: 1px solid #14cc9e;
+        color: #14cc9e;
+        font-weight: 500;
+      }
+
+      &:focus {
+        box-shadow: none!important;
+        outline:0;
+    }
+    }
+  }
+}

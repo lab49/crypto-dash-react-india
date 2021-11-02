@@ -23,7 +23,7 @@ export const currencyImagePaths = {
     'Stellar': '/Stellar.svg',
     'Monero': '/Monero.svg',
     'Dash': '/Dash.svg',
-    'Bitcoin Diamond': '/Bitcoin Diamond (BCD).svg',
+    'Bitcoin Diamond': '/Bitcoin Diamond (BCD).svg'
 }
 
 export const getDefaultCurrencyValue = () => {
