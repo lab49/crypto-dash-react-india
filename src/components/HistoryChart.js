@@ -1,6 +1,6 @@
 import Highcharts from 'highcharts'
 import HighchartsReact from 'highcharts-react-official'
-import Button from './FormComponents/Button'
+import Button from './common/formComponents/Button'
 import { useEffect, useState } from 'react'
 import { graphRanges } from '../constants/appConstants'
 import { getCryptoPriceGraphData } from '../services/currencyService'
