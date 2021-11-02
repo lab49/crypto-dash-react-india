@@ -8,6 +8,7 @@ import {
   setDataToLocalStorage,
 } from "../src/utilities/localStorageUtil";
 import { LOCAL_STORAGE_KEY, ORDER_TYPE, ORDER_STATUS_MAPPING, TIME_INTERVAL } from "../src/constants/appConstants";
+import CurrencyHistoryChart from "../src/components/liveChart";
 
 const CryptoExchange = () => {
   const currencyTradeHistory = getDataFromLocalStorage(
@@ -84,7 +85,11 @@ const CryptoExchange = () => {
           <section className="largest-movers">
             <CurrencyMarketToday />
           </section>
-          <section className="live-chart">LIVE CHART COMPONENT</section>
+          <section className="live-chart">
+            <CurrencyHistoryChart
+                isAreaType={true}
+            />
+          </section>
         </div>
         <div className="col-5 d-flex flex-column">
           <section className="quick-trade">

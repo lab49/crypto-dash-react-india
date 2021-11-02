@@ -7,7 +7,7 @@ const CurrencyStats = ({ volume, setShowVolume }) => {
         <div className="row">
             <div className="col">
                 <span className="h3">Stats</span>
-                <div>Today's Quantity</div>
+                <div>Today&lsquos Quantity</div>
                 <div>
                     <strong>
                         {roundDecimalPlaces(volume, 4)}
