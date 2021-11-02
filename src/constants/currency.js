@@ -13,18 +13,17 @@ export const currencyList = [
 ];
 
 export const currencyImagePaths = {
-    'Bitcoin': '/BTC.svg',
-    'Ethereum': '/Ethereum Classic (ETH).svg',
-    'Binance Coin': '/Binance Coin (BNB).svg',
-    'Cardano': '/Cardano.svg',
-    'Dogecoin': '/Dogecoin (DOGE).svg',
-    'Ripple': '/Ripple.svg',
-    'Litecoin': '/Lite.svg',
-    'Stellar': '/Stellar.svg',
-    'Monero': '/Monero.svg',
-    'Dash': '/Dash.svg',
-    'Bitcoin Diamond': '/Bitcoin Diamond (BCD).svg',
-    'XRP': '/Ripple.svg',
+    'bitcoin': '/BTC.svg',
+    'ethereum': '/Ethereum Classic (ETH).svg',
+    'binance-coin': '/Binance Coin (BNB).svg',
+    'cardano': '/Cardano.svg',
+    'dogecoin': '/Dogecoin (DOGE).svg',
+    'xrp': '/Ripple.svg',
+    'litecoin': '/Lite.svg',
+    'stellar': '/Stellar.svg',
+    'monero': '/Monero.svg',
+    'dash': '/Dash.svg',
+    'bitcoin-diamond': '/Bitcoin Diamond (BCD).svg'
 }
 
 export const getDefaultCurrencyValue = () => {

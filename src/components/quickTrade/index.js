@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import Dropdown from "../FormComponents/Dropdown";
+import CurrencyDropdown from "../common/currencyDropdown"
 import { currencyList } from "../../constants/currency";
-import Input from "../FormComponents/Input";
-import Button from "../FormComponents/Button";
+import Input from "../common/input";
+import Button from "../common/button";
 import { getCurrentTimestamp } from "../../utilities/dateTimeUtil";
 import { ORDER_TYPE, ORDER_STATUS_MAPPING } from "../../constants/appConstants";
 import { getCryptoCurrencyInfo } from "../../services/currencyService";
-import Tabs from "../formComponents/tab";
+import Tabs from "../common/tab";
 import { roundDecimalPlaces } from "../../utilities/commonUtility";
 
 const tabConfig = [
@@ -80,11 +80,11 @@ const QuickTrade = ({ updateTradeHistory, userWallet }) => {
       />
       <div className="content">
         <div className="input-container">
-          <Dropdown
-            className="form-select-lg w-50 bg-secondary text-white"
+          <CurrencyDropdown
             value={cryptoName}
             onChangeHandler={setCryptoName}
             optionList={currencyList}
+            keyPrefix='quick-trade'
           />
           <div className="trade-price">
             <Input

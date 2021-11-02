@@ -32,7 +32,7 @@ const CryptoCurrencyCard = ({ id, name, symbol, percentageChange }) => {
         <div className="winner-looser-card-body">
             <div className="row">
                 <div className="col-2 d-flex align-items-center">
-                    <Image src={currencyImagePaths[name]} width="32" height="32" alt={name}/>
+                    <Image src={currencyImagePaths[id]} width="32" height="32" alt={name}/>
                 </div>
                 <div className="col">
                     <div>

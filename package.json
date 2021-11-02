@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "openfin": "openfin --launch --url http://localhost:3000/crypto-lab"
+    "openfin": "openfin --launch --url http://localhost:3000"
   },
   "dependencies": {
     "@lab49/react-value-flash": "^0.1.4",
