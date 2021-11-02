@@ -28,7 +28,7 @@ const CurrencyMarketToday = () => {
                 <div className="col">
                     <div className="d-flex">
                         <Image src="/trending-up.svg" width={24} height={24} alt="+" />
-                        <div className="winner-looser-card-title">Biggest Gainner</div>
+                        <div className="winner-looser-card-title">Biggest Gainer</div>
                     </div>
                     {
                         Array.isArray(biggestWinner) && biggestWinner.length ?
@@ -39,7 +39,7 @@ const CurrencyMarketToday = () => {
                 <div className="col">
                     <div className="d-flex">
                         <Image src="/trending-down.svg" width={24} height={24} alt="-" />
-                        <div className="winner-looser-card-title">Biggest Looser</div>
+                        <div className="winner-looser-card-title">Biggest Loser</div>
                     </div>
                     {
                         Array.isArray(biggestLooser) && biggestLooser.length ?

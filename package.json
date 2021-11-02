@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "openfin": "openfin --launch --url http://localhost:3000/crypto-lab"
   },
   "dependencies": {
     "@lab49/react-value-flash": "^0.1.4",
@@ -19,12 +20,14 @@
     "moment": "^2.29.1",
     "next": "11.1.2",
     "node-sass": "^4.14.1",
+    "openfin-notifications": "^1.10.2",
     "react": "17.0.2",
     "react-bootstrap-icons": "^1.5.0",
     "react-dom": "17.0.2"
   },
   "devDependencies": {
     "eslint": "7.32.0",
-    "eslint-config-next": "11.1.2"
+    "eslint-config-next": "11.1.2",
+    "openfin-cli": "^3.0.2"
   }
 }
