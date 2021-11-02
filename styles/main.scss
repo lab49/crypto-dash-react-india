@@ -2,7 +2,7 @@
   height: 100vh;
   background-image: url($backgroundImageUrl);
   background-size: 100% 100%;
-  font-family: 'Rubik', sans-serif;
+  font-family: "Rubik", sans-serif;
   color: $textMuted;
 
   .app-body {
@@ -32,6 +32,7 @@
     .largest-movers {
       @extend .block-card;
       flex-basis: 40%;
+      @import "../src/components/currencyMarketToday";
     }
 
     .live-chart {
@@ -43,13 +44,15 @@
       @extend .block-card;
       flex-basis: 30%;
       margin-left: 1rem;
-       @import "../src/components/quickTrade";
+      @import "../src/components/quickTrade";
     }
 
     .orders {
       @extend .block-card;
       flex-grow: 1;
       padding: 10px;
+
+      @import "../src/components/Orders";
     }
   }
 }

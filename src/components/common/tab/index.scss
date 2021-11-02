@@ -1,0 +1,23 @@
+
+.tabs {
+    margin: 10px 0px;
+  
+    .tab {
+      color: #c4c4c4;
+      background-color: transparent;
+      border: none;
+      margin-right: 5px;
+      font-size: 14px;
+      font-weight: normal;
+    }
+  
+    .active {
+      color: #ec3f43;
+      border: 1px thick rgba(239, 239, 239, 0.05) 0%;
+      font-weight: 500;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.18) 12.05%, rgba(38, 41, 46, 0) 100%);
+      box-shadow: inset 2px 3px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+  }
+  
