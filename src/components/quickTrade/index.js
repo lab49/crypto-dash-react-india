@@ -7,7 +7,7 @@ import { getCurrentTimestamp } from "../../utilities/dateTimeUtil";
 import { ORDER_TYPE, ORDER_STATUS_MAPPING } from "../../constants/appConstants";
 import { getCryptoCurrencyInfo } from "../../services/currencyService";
 import Tabs from "../formComponents/tab";
-import { roundDecimalPlaces } from '../../utilities/commonUtility'
+import { roundDecimalPlaces } from "../../utilities/commonUtility";
 
 const tabConfig = [
   {
@@ -61,7 +61,7 @@ const QuickTrade = ({ updateTradeHistory, userWallet }) => {
       timestamp: getCurrentTimestamp(),
       currency: cryptoName,
       price: price,
-      volume: roundDecimalPlaces((marketPrice.priceUsd / price), 5),
+      volume: roundDecimalPlaces(price / marketPrice.priceUsd, 5),
       orderType: activeTab === "tab1" ? ORDER_TYPE.BUY : ORDER_TYPE.SELL,
       status: ORDER_STATUS_MAPPING.IN_PROGRESS,
     };
