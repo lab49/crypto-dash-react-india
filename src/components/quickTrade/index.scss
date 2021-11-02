@@ -8,10 +8,9 @@
   justify-content: space-evenly;
 
   header {
-    color: #c4c4c4;
     font-weight: 500;
     line-height: 24px;
-    letter-spacing: 0em;
+    letter-spacing: 0;
     text-align: left;
     color: $textSecondary;
   }
@@ -26,8 +25,8 @@
 
       button {
         height: 100%;
-        padding: 0px !important;
-        margin: 0px !important;
+        padding: 0 !important;
+        margin: 0 !important;
       }
     }
 

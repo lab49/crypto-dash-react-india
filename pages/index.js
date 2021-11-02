@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import CurrencyMarketToday from "../src/components/currencyMarketToday";
 import Orders from "../src/components/orders";
+import SideBar from "../src/components/sideBar";
 import QuickTrade from "../src/components/quickTrade";
 import {
   getDataFromLocalStorage,
@@ -79,7 +80,7 @@ const CryptoExchange = () => {
   return (
     <div className="app-background">
       <div className="container-fluid text-white row app-body">
-        <nav className="col-1 block-card side-bar"> SIDE BAR COMPONENT</nav>
+        <SideBar/>
         <div className=" row col-11 flex-column main">
           <div className="row flex-grow-1">
             <div className="col-7 d-flex flex-column">

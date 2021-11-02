@@ -1,4 +1,7 @@
 @import "_variable";
+@import "main";
+@import "../src/components/common/currencyDropdown";
+@import "../src/components/common/tab";
 
 html,
 body {
@@ -102,6 +105,3 @@ input[type=number]::-webkit-outer-spin-button {
 .warning-value {
   color: $yellowWarning;
 }
-@import "../src/components/common/currencyDropdown/";
-@import "../src/components/common/tab/";
-@import "main";
