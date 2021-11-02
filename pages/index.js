@@ -78,29 +78,24 @@ const CryptoExchange = () => {
   };
 
   return (
-    <div className="app-background">
-      <div className="container-fluid text-white row app-body">
-        <SideBar/>
-        <div className=" row col-11 flex-column main">
-          <div className="row flex-grow-1">
-            <div className="col-7 d-flex flex-column">
-              <section className="largest-movers">
-                <CurrencyMarketToday />
-              </section>
-              <section className="live-chart">LIVE CHART COMPONENT</section>
-            </div>
-            <div className="col-5 d-flex flex-column">
-              <section className="quick-trade">
-                <QuickTrade
-                  updateTradeHistory={updateTradeHistory}
-                  userWallet={userWallet}
-                />
-              </section>
-              <section className="orders">
-                <Orders tradeHistory={tradeHistory} />
-              </section>
-            </div>
-          </div>
+    <div className=" row col-11 flex-column main-content">
+      <div className="row flex-grow-1">
+        <div className="col-7 d-flex flex-column">
+          <section className="largest-movers">
+            <CurrencyMarketToday />
+          </section>
+          <section className="live-chart">LIVE CHART COMPONENT</section>
+        </div>
+        <div className="col-5 d-flex flex-column">
+          <section className="quick-trade">
+            <QuickTrade
+              updateTradeHistory={updateTradeHistory}
+              userWallet={userWallet}
+            />
+          </section>
+          <section className="orders">
+            <Orders tradeHistory={tradeHistory} />
+          </section>
         </div>
       </div>
     </div>
