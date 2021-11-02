@@ -13,7 +13,7 @@ const CurrencyDropdown = ({ value: selectedValue, onChangeHandler, optionList, k
                 className={`dropdown-item ${selectedValue == value ? 'active' : ''}`}
                 onClick={(event) => onChangeHandler(value)}>
 
-                <CurrencyRow name={label} symbol={symbol}/>
+                <CurrencyRow id={value} name={label} symbol={symbol}/>
             </li>
         );
     }
@@ -29,7 +29,7 @@ const CurrencyDropdown = ({ value: selectedValue, onChangeHandler, optionList, k
             >
                 {
                     optionsMap ?
-                        <CurrencyRow name={optionsMap.get(selectedValue).label}
+                        <CurrencyRow id={selectedValue} name={optionsMap.get(selectedValue).label}
                                      symbol={optionsMap.get(selectedValue).symbol}/>
                         : selectedValue
                 }
