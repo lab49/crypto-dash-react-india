@@ -1,0 +1,17 @@
+{
+  "data": {
+    "id": "dogecoin",
+    "rank": "9",
+    "symbol": "DOGE",
+    "name": "Dogecoin",
+    "supply": "131875387607.8295300000000000",
+    "maxSupply": null,
+    "marketCapUsd": "43498042856.5604707986953592",
+    "volumeUsd24Hr": "11183127305.0174528575767259",
+    "priceUsd": "0.3298420095333844",
+    "changePercent24Hr": "34.2807861696581107",
+    "vwap24Hr": "0.2903617689689149",
+    "explorer": "http://dogechain.info/chain/Dogecoin"
+  },
+  "timestamp": 1635442096438
+}

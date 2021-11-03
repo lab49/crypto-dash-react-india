@@ -1,0 +1,17 @@
+{
+  "data": {
+    "id": "litecoin",
+    "rank": "19",
+    "symbol": "LTC",
+    "name": "Litecoin",
+    "supply": "68850307.7387088500000000",
+    "maxSupply": "84000000.0000000000000000",
+    "marketCapUsd": "12988489184.4364862172882416",
+    "volumeUsd24Hr": "954229831.3025954972715898",
+    "priceUsd": "188.6482371833195148",
+    "changePercent24Hr": "2.3184079048391543",
+    "vwap24Hr": "184.6084320684193394",
+    "explorer": "http://explorer.litecoin.net/chain/Litecoin"
+  },
+  "timestamp": 1635442394205
+}

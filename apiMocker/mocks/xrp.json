@@ -1,0 +1,17 @@
+{
+  "data": {
+    "id": "xrp",
+    "rank": "7",
+    "symbol": "XRP",
+    "name": "XRP",
+    "supply": "45404028640.0000000000000000",
+    "maxSupply": "100000000000.0000000000000000",
+    "marketCapUsd": "48617377131.2227579547401120",
+    "volumeUsd24Hr": "3163922680.6399759936631903",
+    "priceUsd": "1.0707723210356683",
+    "changePercent24Hr": "4.1653678507812874",
+    "vwap24Hr": "1.0317378339461079",
+    "explorer": "https://xrpcharts.ripple.com/#/graph/"
+  },
+  "timestamp": 1635442252259
+}

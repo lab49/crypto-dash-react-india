@@ -1,0 +1,51 @@
+{
+  "note": "This is a sample config file. You should change the mockDirectory to a more reasonable path.",
+  "mockDirectory": "~/project/ReactConf/crypto-dashboard-ui/apiMocker/mocks",
+  "quiet": false,
+  "port": "7878",
+  "latency": 5,
+  "logRequestHeaders": true,
+  "corsCredentials": "true",
+  "webServices": {
+    "assets": {
+      "verbs": ["get"],
+      "mockFile": "allCurrencies.json"
+    },
+    "assets/:currencyName/": {
+      "latency": 20,
+      "verbs": ["get"],
+      "switch": "currencyName",
+      "switchResponses": {
+        "currencyNamebitcoin": {"httpStatus": 200, "mockFile": "bitcoin.json"},
+        "currencyNameethereum": {"httpStatus": 200, "mockFile": "ethereum.json"},
+        "currencyNamebinance-coin": {"httpStatus": 200, "mockFile": "binance-coin.json"},
+        "currencyNamecardano": {"httpStatus": 200, "mockFile": "cardano.json"},
+        "currencyNamedogecoin": {"httpStatus": 200, "mockFile": "dogecoin.json"},
+        "currencyNamexrp": {"httpStatus": 200, "mockFile": "xrp.json"},
+        "currencyNamelitecoin": {"httpStatus": 200, "mockFile": "litecoin.json"},
+        "currencyNamehorizen": {"httpStatus": 200, "mockFile": "horizen.json"},
+        "currencyNamekadena": {"httpStatus": 200, "mockFile": "kadena.json"},
+        "currencyNamesecret": {"httpStatus": 200, "mockFile": "secret.json"},
+        "currencyNamefantom": {"httpStatus": 200, "mockFile": "fantom.json"}
+      }
+    },
+    "assets/:currencyName/history": {
+      "latency": 20,
+      "verbs": ["get"],
+      "switch": "currencyName",
+      "switchResponses": {
+        "currencyNamebitcoin": {"httpStatus": 200, "mockFile": "bitcoinHistory.json"},
+        "currencyNameethereum": {"httpStatus": 200, "mockFile": "ethereumHistory.json"},
+        "currencyNamebinance-coin": {"httpStatus": 200, "mockFile": "binance-coinHistory.json"},
+        "currencyNamecardano": {"httpStatus": 200, "mockFile": "cardanoHistory.json"},
+        "currencyNamedogecoin": {"httpStatus": 200, "mockFile": "dogecoinHistory.json"},
+        "currencyNamexrp": {"httpStatus": 200, "mockFile": "xrpHistory.json"},
+        "currencyNamelitecoin": {"httpStatus": 200, "mockFile": "litecoinHistory.json"},
+        "currencyNamehorizen": {"httpStatus": 200, "mockFile": "horizenHistory.json"},
+        "currencyNamekadena": {"httpStatus": 200, "mockFile": "kadenaHistory.json"},
+        "currencyNamesecret": {"httpStatus": 200, "mockFile": "secretHistory.json"},
+        "currencyNamefantom": {"httpStatus": 200, "mockFile": "fantomHistory.json"}
+      }
+    }
+  }
+}

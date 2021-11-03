@@ -1,0 +1,17 @@
+{
+  "data": {
+    "id": "fantom",
+    "rank": "25",
+    "symbol": "FTM",
+    "name": "Fantom",
+    "supply": "2545006273.0000000000000000",
+    "maxSupply": "3175000000.0000000000000000",
+    "marketCapUsd": "7797627033.0966344920550410",
+    "volumeUsd24Hr": "1179134891.7854653716470055",
+    "priceUsd": "3.0638930504108170",
+    "changePercent24Hr": "-3.1213014488884446",
+    "vwap24Hr": "3.2718172273192308",
+    "explorer": "https://etherscan.io/token/0x4e15361fd6b4bb609fa63c81a2be19d873717870"
+  },
+  "timestamp": 1635442801766
+}

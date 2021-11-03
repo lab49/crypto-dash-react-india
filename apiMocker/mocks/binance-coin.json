@@ -1,0 +1,17 @@
+{
+  "data": {
+    "id": "binance-coin",
+    "rank": "3",
+    "symbol": "BNB",
+    "name": "Binance Coin",
+    "supply": "166801148.0000000000000000",
+    "maxSupply": "166801148.0000000000000000",
+    "marketCapUsd": "81271952140.9171852278666260",
+    "volumeUsd24Hr": "1364810591.9826081578821316",
+    "priceUsd": "487.2385658935463995",
+    "changePercent24Hr": "6.4434721502184002",
+    "vwap24Hr": "466.1441259565268608",
+    "explorer": "https://etherscan.io/token/0xB8c77482e45F1F44dE1745F52C74426C631bDD52"
+  },
+  "timestamp": 1635441471314
+}

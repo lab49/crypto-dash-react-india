@@ -1,0 +1,17 @@
+{
+  "data": {
+    "id": "kadena",
+    "rank": "95",
+    "symbol": "KDA",
+    "name": "Kadena",
+    "supply": "154087062.7464500000000000",
+    "maxSupply": "1000000000.0000000000000000",
+    "marketCapUsd": "1101191526.1280308744734252",
+    "volumeUsd24Hr": "43988567.0874872174901217",
+    "priceUsd": "7.1465540746924332",
+    "changePercent24Hr": "10.9234957687384992",
+    "vwap24Hr": "6.3321750150174162",
+    "explorer": "https://explorer.chainweb.com/mainnet"
+  },
+  "timestamp": 1635442613722
+}

@@ -53,3 +53,49 @@ npm script to run the application
 ```bash
 npm run openfin
 ```
+
+
+----
+
+## How to use local mock APIs
+
+1. APIMocker is used to mock APIs. API response is served as a static file stored. 
+2. Static files are present at location apiMocker/mocks.json. 
+3. First install api mocker using below npm command
+```
+sudo npm install -g apimocker
+```
+4. Change location of mock files at apiMocker/config.json line number 3 like this -
+```
+   "mockDirectory": "~/project/ReactConf/crypto-dashboard-ui/apiMocker/mocks",
+```
+5. Run api mocker - make sure path to apiMocker is correct.
+
+```
+cd <crypto-dashboard-ui>
+node /usr/local/lib/node_modules/apimocker/bin/apimocker -c ./apiMocker/config.json
+```
+Expected console logs like 
+```
+crypto-dashboard-ui % node /usr/local/lib/node_modules/apimocker/bin/apimocker -c ./apiMocker/config.json
+[apimocker] Loading config file: /Users/amandeeprehal/project/ReactConf/crypto-dashboard-ui/apiMocker/config.json
+[apimocker] Set route: GET assets : allCurrencies.json 5 ms
+[apimocker] Set route: GET assets/:currencyName/ : <no mockFile> 20 ms
+[apimocker]  with switch on param: currencyName
+[apimocker] Set route: GET assets/:currencyName/history : <no mockFile> 20 ms
+[apimocker]  with switch on param: currencyName
+[apimocker] Mock server listening on port 7878
+
+```
+
+6. Comment coincap api and uncomment local api in file config.js - 
+```
+
+ COINCAP_URL: 'https://api.coincap.io/v2'
+ //COINCAP_URL: 'http://localhost:7878'
+
+```
+6. Finally run 
+```
+npm run dev
+```

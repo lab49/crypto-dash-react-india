@@ -1,0 +1,17 @@
+{
+  "data": {
+    "id": "cardano",
+    "rank": "5",
+    "symbol": "ADA",
+    "name": "Cardano",
+    "supply": "33257076965.1830000000000000",
+    "maxSupply": "45000000000.0000000000000000",
+    "marketCapUsd": "67087745992.2407868051786827",
+    "volumeUsd24Hr": "2099099039.1408147500218664",
+    "priceUsd": "2.0172472181627773",
+    "changePercent24Hr": "1.4786018200602562",
+    "vwap24Hr": "1.9726766790803784",
+    "explorer": "https://cardanoexplorer.com/"
+  },
+  "timestamp": 1635441881165
+}
