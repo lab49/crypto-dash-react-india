@@ -20,7 +20,7 @@ const Index = ({ tradeHistory }) => {
 
     useEffect(() => {
         if (gridColumnApi) {
-            gridColumnApi.autoSizeAllColumns();
+            gridColumnApi.sizeColumnsToFit();
         }
     }, [gridColumnApi])
 
