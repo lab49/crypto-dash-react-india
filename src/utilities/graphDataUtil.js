@@ -1,35 +1,41 @@
-import { dayUnits } from '../constants/appConstants'
-import { getFormattedDate } from './dateTimeUtil'
+import {dayUnits} from '../constants/appConstants'
+import {getFormattedDate} from './dateTimeUtil'
+
+const successGreen = '#14CC9E';
+const failedRed = '#ea4335';
+const plotGray = '#999999';
 
 let graphOptions = {
-    title: { text: '' },
+    title: {text: ''},
     tooltip: {
-        formatter() {
-            return `
-            <strong>${this.y}</strong>
-            <br />
-            ${this.x}
-            `
-        },
+        crosshairs: {
+            color: successGreen,
+            dashStyle: 'solid',
+            width: 2
+        }
     },
-    credits: { enabled: false },
+    credits: {enabled: false},
     chart: {
-        backgroundColor: '#343a40',
-        height: 350,
-        type: 'line',
+        backgroundColor: 'rgba(0,0,0,0)',
+        height: 290
     },
+
     xAxis: {
         labels: {
-            rotation: -45,
-            style: { color: 'white' },
+            style: {color: plotGray},
         },
+        lineColor: plotGray,
+        lineWidth: 1
     },
     yAxis: {
-        title: { text: null },
+        title: {text: null},
         labels: {
-            style: { color: 'white' },
+            style: {color: plotGray},
         },
-    },
+        gridLineColor: plotGray,
+        lineColor: plotGray,
+        lineWidth: 1
+    }
 }
 
 const getGraphDateFormat = (unit) => {
@@ -58,7 +64,7 @@ const getGraphDataPoints = (graphData, key) => {
 
 const getGraphColor = (graphData, key) => {
     if (parseFloat(graphData[0][key]) <= parseFloat(graphData[graphData.length - 1][key])) {
-        return 'green';
+        return '#14CC9E';
     } else {
         return '#ea4335';
     }
@@ -78,6 +84,7 @@ export const getGraphInterval = (unit) => {
 }
 
 export const getGraphOptions = (graphData, unit) => {
+    const color = getGraphColor(graphData, 'priceUsd');
     let modifiedOptions = JSON.parse(JSON.stringify(graphOptions))
     modifiedOptions.xAxis.categories = getGraphPeriods(graphData, 'time', unit)
     modifiedOptions.xAxis.labels.step = Math.ceil(graphData.length / 10);
@@ -85,10 +92,26 @@ export const getGraphOptions = (graphData, unit) => {
         showInLegend: false,
         data: getGraphDataPoints(graphData, 'priceUsd'),
     }]
+    modifiedOptions.tooltip.crosshairs.color = color;
+    modifiedOptions.tooltip.useHTML = true;
+    modifiedOptions.tooltip.headerFormat = '<div style="background: black;  text-align: center">';
+    modifiedOptions.tooltip.pointFormat = '<strong style="color: white">${point.key}</strong><p>${point.y}</p>';
+    modifiedOptions.tooltip.footerFormat = '</div>';
     modifiedOptions.plotOptions = {
         series: {
-            color: getGraphColor(graphData, 'priceUsd'),
+            color,
+            fillColor: {
+                linearGradient: [0, 0, 0, 300],
+                stops: [
+                    [0, color + '40'],
+                    [1, color + '00']
+                ]
+            },
+            marker: {
+                enabled: false
+            }
         },
+
     }
 
     return modifiedOptions;
@@ -102,9 +125,10 @@ export const modifyOptionsForCard = (options) => {
         modifiedOptions.xAxis.lineWidth = 0;
         modifiedOptions.xAxis.labels.enabled = false;
         modifiedOptions.yAxis.gridLineWidth = 0;
+        modifiedOptions.yAxis.lineWidth = 0;
         modifiedOptions.yAxis.labels.enabled = false;
         modifiedOptions.tooltip.enabled = false;
-        modifiedOptions.plotOptions.series.color
+        modifiedOptions.plotOptions.series.color;
     }
 
     return modifiedOptions;
