@@ -6,25 +6,30 @@ import { dateFormatter, dateComparator, dateComparatorFilter } from "../../utili
 import { getCurrencyCell, getQuantityCell, getPriceCell, getStatusCell } from './orderCellFormatter';
 
 const Index = ({ tradeHistory }) => {
-    const [gridColumnApi, setGridColumnApi] = useState(null),
-        defaultColDef = {
-            flex: 1,
-            minWidth: 75,
-            sortable: true,
-            resizable: true,
-        }
-
-    const onGridReady = (params) => {
-        setGridColumnApi(params.columnApi);
+  const [gridApi, setGridApi] = useState(null),
+    defaultColDef = {
+      flex: 1,
+      minWidth: 75,
+      sortable: true,
+      resizable: true,
     };
 
-    useEffect(() => {
-        if (gridColumnApi) {
-               gridColumnApi.autoSizeAllColumns();
-               gridColumnApi.sizeColumnsToFit();
-        }
-    }, [gridColumnApi])
+  useEffect(() => {
+    const handleResize = {
+      if(gridApi) {
+          gridApi.sizeColumnsToFit();
+      },
+    };
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
+  const onGridReady = (params) => {
+    setGridApi(params.api);
+    params.api.sizeColumnsToFit();
+  };
 
     return (
         <div id="order-grid" className="ag-theme-alpine-dark">
@@ -46,6 +51,7 @@ const Index = ({ tradeHistory }) => {
                         suppressAndOrCondition: true,
                         comparator: dateComparatorFilter,
                     }}
+                    suppressSizeToFit={true}
                 />
                 <AgGridColumn
                     headerName="Currency"
