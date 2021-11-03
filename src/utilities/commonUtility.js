@@ -1,7 +1,7 @@
 import { apiEndpoints } from "../constants/endpointConstants";
 
 export function roundDecimalPlaces(value, places) {
-    return value ? parseFloat(value).toFixed(places) : 0;
+    return value ? +parseFloat(value).toFixed(places) : 0;
 }
 
 export const getApiEndpoints = (apiName, params = {}) => {
