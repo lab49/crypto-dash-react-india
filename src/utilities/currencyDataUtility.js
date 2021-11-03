@@ -75,7 +75,7 @@ const getWalletDetails = ({ id, name, symbol, priceUsd }) => {
     }
 }
 
-export const filterWalletCurrencyList = (list) => {
+export const filterWalletCurrencyList = (list = []) => {
     const currencyNameList = currencyList.map(({ value }) => value);
 
     return list

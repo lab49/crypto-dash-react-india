@@ -3,7 +3,7 @@
     font-size: 16px;
     font-style: normal;
     line-height: 24px;
-    letter-spacing: 0em;
+    letter-spacing: 0;
     text-align: left;
     padding-top: 20px;
     padding-left: 20px;
@@ -23,9 +23,9 @@
       font-size: 14px !important;
       font-style: normal;
       line-height: 24px;
-      letter-spacing: 0em;
+      letter-spacing: 0;
       color: $textMuted !important;
-      cursor: crosshair;
+      cursor: pointer;
       outline-width: 0;
 
       &.active {
@@ -63,7 +63,7 @@
           font-style: normal;
           font-weight: 400;
           line-height: 47px;
-          letter-spacing: 0em;
+          letter-spacing: 0;
         }
       }
 
@@ -71,7 +71,7 @@
         font-size: 20px;
         font-style: normal;
         line-height: 24px;
-        letter-spacing: 0em;
+        letter-spacing: 0;
         color: $greenSuccess;
         float: right;
       }
