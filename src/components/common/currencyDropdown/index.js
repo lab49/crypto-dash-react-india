@@ -3,15 +3,15 @@ import CurrencyRow from "./CurrencyRow";
 
 const CurrencyDropdown = ({ value: selectedValue, onChangeHandler, optionList, keyPrefix }) => {
     const [isOpen, setIsOpen] = useState(false);
-    const [optionsMap, setOptionsMap] = useState(new Map(optionList.map(option => [option.value, option])));
+    const optionsMap = new Map(optionList.map(option => [option.value, option]));
 
     const toggleOpen = () => setIsOpen(prevState => !prevState);
 
     const getOption = (keyPrefix, { value, label, symbol }) => {
         return (
             <li key={keyPrefix + value}
-                className={`dropdown-item ${selectedValue == value ? 'active' : ''}`}
-                onClick={(event) => onChangeHandler(value)}>
+                className={`dropdown-item ${selectedValue === value ? 'active' : ''}`}
+                onClick={() => onChangeHandler(value)}>
 
                 <CurrencyRow id={value} name={label} symbol={symbol}/>
             </li>
@@ -21,7 +21,7 @@ const CurrencyDropdown = ({ value: selectedValue, onChangeHandler, optionList, k
     return (
         <div className="dropdown w-100" onClick={toggleOpen}>
             <button
-                className="d-flex justify-content-between align-items-center w-100 btn btn-lg btn-secondary dropdown-toggle"
+                className="d-flex justify-content-between align-items-center w-100 btn btn-lg dropdown-toggle"
                 type="button"
                 id="dropdownMenuButton1"
                 data-bs-toggle="dropdown"

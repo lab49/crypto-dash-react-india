@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import CurrencyMarketToday from "../src/components/currencyMarketToday";
 import Orders from "../src/components/orders";
-import SideBar from "../src/components/sideBar";
 import QuickTrade from "../src/components/quickTrade";
 import {
   getDataFromLocalStorage,
@@ -58,7 +57,7 @@ const CryptoExchange = () => {
       );
       let status;
 
-      if (randomNumber > 0.5) {
+      if (randomNumber > 0.25) {
         status = ORDER_STATUS_MAPPING.COMPLETED;
         updateUserWallet(tradeData);
       } else {

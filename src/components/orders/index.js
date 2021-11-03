@@ -60,7 +60,7 @@ const Index = ({ tradeHistory }) => {
                     cellRendererFramework={getQuantityCell}
                 />
                 <AgGridColumn
-                    headerName="Price"
+                    headerName="Amount"
                     field="price"
                     valueFormatter={getPriceCell}
                     filter="agNumberColumnFilter"
