@@ -1,4 +1,7 @@
 import { currencyList } from '../constants/currency';
+import { getDataFromLocalStorage } from './localStorageUtil';
+import { LOCAL_STORAGE_KEY } from '../constants/appConstants';
+import { roundDecimalPlaces } from './commonUtility';
 
 export const getCryptoCurrencyPrice = (resp, currencyName) => {
     const cryptoCurrencyPrices = JSON.parse(resp.data);
@@ -57,4 +60,25 @@ export const getBiggestWinnerAndLoosers = (currencyList) => {
     }
 
     return { biggestWinner, biggestLooser };
+}
+
+const getWalletDetails = ({ id, name, symbol, priceUsd }) => {
+    const userAccountWallet = getDataFromLocalStorage(LOCAL_STORAGE_KEY.USER_ACCOUNT_WALLET);
+    const quantity = userAccountWallet[id] || 0;
+
+    return {
+        id,
+        name,
+        symbol,
+        quantity,
+        amount: roundDecimalPlaces(priceUsd * quantity, 6),
+    }
+}
+
+export const filterWalletCurrencyList = (list) => {
+    const currencyNameList = currencyList.map(({ value }) => value);
+
+    return list
+        .filter(item => currencyNameList.includes(item.id))
+        .map(item => getWalletDetails(item));
 }

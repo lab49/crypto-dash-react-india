@@ -9,7 +9,7 @@ const Index = ({ tradeHistory }) => {
     const [gridColumnApi, setGridColumnApi] = useState(null),
         defaultColDef = {
             flex: 1,
-            minWidth: 50,
+            minWidth: 75,
             sortable: true,
             resizable: true,
         }
@@ -37,6 +37,7 @@ const Index = ({ tradeHistory }) => {
                     headerName="Date"
                     field="timestamp"
                     valueFormatter={dateFormatter}
+                    sort="desc"
                     comparator={dateComparator}
                     filter="agDateColumnFilter"
                     filterParams={{

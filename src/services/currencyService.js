@@ -1,7 +1,11 @@
 import { apiNames } from '../constants/endpointConstants'
 import { getApiEndpoints } from '../utilities/commonUtility'
 import { getApiData } from '../utilities/apiUtility'
-import { formatCryptoCurrencyInfo, getBiggestWinnerAndLoosers } from '../utilities/currencyDataUtility'
+import {
+    formatCryptoCurrencyInfo,
+    getBiggestWinnerAndLoosers,
+    filterWalletCurrencyList,
+} from '../utilities/currencyDataUtility'
 import { getGraphInterval, getGraphOptions } from '../utilities/graphDataUtil'
 import { getCurrentTimestamp, getTimestampFromDuration } from '../utilities/dateTimeUtil'
 
@@ -28,11 +32,20 @@ export const getCryptoPriceGraphData = async (currencyName, unit, value) => {
         params = {
             interval: getGraphInterval(unit),
             start: getTimestampFromDuration('sub', value, unit),
-            end: getCurrentTimestamp()
+            end: getCurrentTimestamp(),
         }
 
     const resp = await getApiData(priceHistoryEndpoint, params),
         graphData = resp?.data?.data;
 
     return Array.isArray(graphData) && graphData.length ? getGraphOptions(graphData, unit) : {}
+}
+
+
+export const getWalletCurrencyList = async () => {
+    const allCurrencyInfoEndpoint = getApiEndpoints(apiNames.ALL_CURRENCY_INFO)
+    const resp = await getApiData(allCurrencyInfoEndpoint)
+    const currencyList = resp?.data?.data
+
+    return filterWalletCurrencyList(currencyList)
 }
