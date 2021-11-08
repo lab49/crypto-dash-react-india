@@ -106,3 +106,8 @@ input[type=number]::-webkit-outer-spin-button {
 .warning-value {
   color: $yellowWarning;
 }
+
+.dropdown-menu {
+  overflow-y: scroll;
+  height: 275px;
+}
