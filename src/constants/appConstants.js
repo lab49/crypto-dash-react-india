@@ -45,3 +45,14 @@ export const TIME_INTERVAL = {
     ORDER_STATUS_SYNC: 5000,
     BIGGEST_WINNER_LOOSER_SYNC: 60000,
 }
+
+export const QUICK_TRADE_TAB_CONFIG = [
+    {
+      id: "buyTab",
+      name: ORDER_TYPE.BUY,
+    },
+    {
+      id: "sellTab",
+      name: ORDER_TYPE.SELL,
+    },
+  ];

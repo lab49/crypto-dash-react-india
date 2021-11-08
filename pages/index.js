@@ -37,13 +37,15 @@ const CryptoExchange = () => {
 
   const updateUserWallet = (tradeData) => {
     const currencyName = tradeData.currency;
-    userWallet[currencyName] = userWallet[currencyName]
+    const updatedWallet = {...userWallet,
+      [currencyName]:
+      userWallet[currencyName]
       ? ORDER_TYPE.BUY === tradeData.orderType
         ? userWallet[currencyName] + tradeData.volume
         : userWallet[currencyName] - tradeData.volume
-      : tradeData.volume;
-    setUserWallet(userWallet);
-    setDataToLocalStorage(LOCAL_STORAGE_KEY.USER_ACCOUNT_WALLET, userWallet);
+      : tradeData.volume};
+    setUserWallet(updatedWallet);
+    setDataToLocalStorage(LOCAL_STORAGE_KEY.USER_ACCOUNT_WALLET, updatedWallet);
   };
 
   const updateTradeStatus = (tradeData) => {
