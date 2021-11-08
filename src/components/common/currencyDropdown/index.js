@@ -1,11 +1,25 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import CurrencyRow from "./CurrencyRow";
 
 const CurrencyDropdown = ({ value: selectedValue, onChangeHandler, optionList, keyPrefix }) => {
     const [isOpen, setIsOpen] = useState(false);
     const optionsMap = new Map(optionList.map(option => [option.value, option]));
 
-    const toggleOpen = () => setIsOpen(prevState => !prevState);
+    const toggleOpen = (event) => {
+        event.stopPropagation();
+        setIsOpen(prevState => !prevState);
+    }
+
+    const closeDropdown = () => {
+        setIsOpen(false)
+        window.removeEventListener('click', closeDropdown)
+    }
+
+    useEffect(() => {
+        if (isOpen) {
+            window.addEventListener('click', closeDropdown)
+        }
+    }, [isOpen])
 
     const getOption = (keyPrefix, { value, label, symbol }) => {
         return (

@@ -64,7 +64,7 @@ export const getBiggestWinnerAndLoosers = (currencyList) => {
 
 const getWalletDetails = ({ id, name, symbol, priceUsd }) => {
     const userAccountWallet = getDataFromLocalStorage(LOCAL_STORAGE_KEY.USER_ACCOUNT_WALLET);
-    const quantity = userAccountWallet[id] || 0;
+    const quantity = userAccountWallet && userAccountWallet[id] ? userAccountWallet[id] : 0;
 
     return {
         id,

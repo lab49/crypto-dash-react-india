@@ -1,5 +1,8 @@
 import axios from 'axios';
+import axiosRetry from 'axios-retry';
 import config from '../../config';
+
+axiosRetry(axios, { retries: 3 });
 
 axios.defaults.baseURL = config.COINCAP_URL
 

@@ -8,7 +8,7 @@
   .app-body {
     background: rgba(34, 37, 45, 0.8);
     backdrop-filter: blur(120px);
-    height: 100vh;
+    min-height: 100vh;
 
     .main-content {
       padding: 0 5px;
@@ -16,7 +16,7 @@
 
     .side-bar {
       @extend .block-card;
-      height: 100vh;
+      min-height: 100vh;
       @import "../src/components/sideBar";
     }
 

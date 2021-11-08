@@ -48,10 +48,10 @@ const CryptoExchange = () => {
 
   const updateTradeStatus = (tradeData) => {
     const randomNumber = Math.random();
-    const modifiedTradeHistory = getDataFromLocalStorage(
-      LOCAL_STORAGE_KEY.CURRENCY_TRADE_HISTORY
-    );
     setTimeout(() => {
+      let modifiedTradeHistory = getDataFromLocalStorage(
+          LOCAL_STORAGE_KEY.CURRENCY_TRADE_HISTORY
+      );
       const tradeIndex = modifiedTradeHistory.findIndex(
         ({ timestamp }) => timestamp === tradeData.timestamp
       );
