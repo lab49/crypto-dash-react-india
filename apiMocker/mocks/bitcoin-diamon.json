@@ -1,0 +1,17 @@
+{
+  "data": {
+    "id": "bitcoin-diamond",
+    "rank": "196",
+    "symbol": "BCD",
+    "name": "Bitcoin Diamond",
+    "supply": "186492897.9530000000000000",
+    "maxSupply": "210000000.0000000000000000",
+    "marketCapUsd": "405654692.5336699024499216",
+    "volumeUsd24Hr": "7554991.5599425655229146",
+    "priceUsd": "2.1751750173130085",
+    "changePercent24Hr": "8.8162462870966296",
+    "vwap24Hr": "2.1388709746064309",
+    "explorer": "http://explorer.btcd.io/"
+  },
+  "timestamp": 1636369841238
+}

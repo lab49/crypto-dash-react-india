@@ -1,0 +1,17 @@
+{
+  "data": {
+    "id": "monero",
+    "rank": "44",
+    "symbol": "XMR",
+    "name": "Monero",
+    "supply": "18014103.5844238600000000",
+    "maxSupply": null,
+    "marketCapUsd": "4764314470.6046474848307719",
+    "volumeUsd24Hr": "155850933.8695038981892026",
+    "priceUsd": "264.4769110090039050",
+    "changePercent24Hr": "1.1573990533946724",
+    "vwap24Hr": "265.7795812826401013",
+    "explorer": "http://moneroblocks.info/"
+  },
+  "timestamp": 1636369942690
+}

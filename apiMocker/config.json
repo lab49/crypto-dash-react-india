@@ -23,10 +23,10 @@
         "currencyNamedogecoin": {"httpStatus": 200, "mockFile": "dogecoin.json"},
         "currencyNamexrp": {"httpStatus": 200, "mockFile": "xrp.json"},
         "currencyNamelitecoin": {"httpStatus": 200, "mockFile": "litecoin.json"},
-        "currencyNamehorizen": {"httpStatus": 200, "mockFile": "horizen.json"},
-        "currencyNamekadena": {"httpStatus": 200, "mockFile": "kadena.json"},
-        "currencyNamesecret": {"httpStatus": 200, "mockFile": "secret.json"},
-        "currencyNamefantom": {"httpStatus": 200, "mockFile": "fantom.json"}
+        "currencyNamestellar": {"httpStatus": 200, "mockFile": "stellar.json"},
+        "currencyNamemonero": {"httpStatus": 200, "mockFile": "monero.json"},
+        "currencyNamedash": {"httpStatus": 200, "mockFile": "dash.json"},
+        "currencyNamebitcoin-diamond": {"httpStatus": 200, "mockFile": "bitcoin-diamond.json"}
       }
     },
     "assets/:currencyName/history": {
@@ -41,10 +41,10 @@
         "currencyNamedogecoin": {"httpStatus": 200, "mockFile": "dogecoinHistory.json"},
         "currencyNamexrp": {"httpStatus": 200, "mockFile": "xrpHistory.json"},
         "currencyNamelitecoin": {"httpStatus": 200, "mockFile": "litecoinHistory.json"},
-        "currencyNamehorizen": {"httpStatus": 200, "mockFile": "horizenHistory.json"},
-        "currencyNamekadena": {"httpStatus": 200, "mockFile": "kadenaHistory.json"},
-        "currencyNamesecret": {"httpStatus": 200, "mockFile": "secretHistory.json"},
-        "currencyNamefantom": {"httpStatus": 200, "mockFile": "fantomHistory.json"}
+        "currencyNamestellar": {"httpStatus": 200, "mockFile": "stellarHistory.json"},
+        "currencyNamemonero": {"httpStatus": 200, "mockFile": "moneroHistory.json"},
+        "currencyNamedash": {"httpStatus": 200, "mockFile": "dashHistory.json"},
+        "currencyNamebitcoin-diamond": {"httpStatus": 200, "mockFile": "bitcoin-diamondHistory.json"}
       }
     }
   }
