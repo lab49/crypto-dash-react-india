@@ -27,6 +27,7 @@
       @extend .block-card;
       flex-basis: 40%;
       margin-left: 10px;
+      @import "../src/components/currencyMarketToday";
     }
 
     .live-chart {

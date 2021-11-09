@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import CurrencyMarketToday from "../src/components/currencyMarketToday";
 import MarketPageLayout from "../src/components/common/layouts/MarketPageLayout";
 import CurrencyHistoryChart from "../src/components/liveChart";
 import QuickTrade from "../src/components/quickTrade";
@@ -88,7 +89,7 @@ const CryptoExchange = () => {
 
   return (
     <MarketPageLayout
-      topMarketMoversComponent={""}
+      topMarketMoversComponent={ <CurrencyMarketToday/> }
       liveChartComponent={<CurrencyHistoryChart isAreaType={true} />}
       quickTradeComponent={
         <QuickTrade
