@@ -1,7 +1,7 @@
 import React from "react";
 import AccountWallet from '../../src/components/accountWallet/indes';
 
-const Wallet = () => {
+const WalletLayout = () => {
 
     return (
         <div className="row col-11 flex-column main">
@@ -12,4 +12,4 @@ const Wallet = () => {
     )
 }
 
-export default Wallet;
+export default WalletLayout;

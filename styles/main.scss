@@ -17,7 +17,6 @@
     .side-bar {
       @extend .block-card;
       min-height: 100vh;
-      @import "../src/components/sideBar";
     }
 
     section {
@@ -48,7 +47,6 @@
       @extend .block-card;
       flex-grow: 1;
       padding: 10px;
-
       @import "../src/components/Orders";
     }
   }
