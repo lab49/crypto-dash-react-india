@@ -39,6 +39,7 @@
     .quick-trade {
       @extend .block-card;
       flex-basis: 30%;
+      @import "../src/components/quickTrade";
     }
 
     .orders {
