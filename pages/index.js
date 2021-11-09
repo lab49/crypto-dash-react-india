@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import MarketPageLayout from "../src/components/common/layouts/MarketPageLayout";
 import CurrencyHistoryChart from "../src/components/liveChart";
 import QuickTrade from "../src/components/quickTrade";
+import Orders from "../src/components/orders";
 import {
   getDataFromLocalStorage,
   setDataToLocalStorage,
@@ -95,7 +96,7 @@ const CryptoExchange = () => {
           userWallet={userWallet}
         />
       }
-      orderHistoryComponent={""}
+      orderHistoryComponent={<Orders tradeHistory={tradeHistory}/>}
     />
   );
 };

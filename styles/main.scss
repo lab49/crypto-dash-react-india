@@ -46,6 +46,7 @@
       @extend .block-card;
       flex-grow: 1;
       padding: 10px;
+      @import "../src/components/Orders";
     }
   }
 }
