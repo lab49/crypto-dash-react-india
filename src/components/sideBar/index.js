@@ -6,7 +6,7 @@ import { Bag, Wallet } from 'react-bootstrap-icons';
 const SideBar = () => {
     const listItem = [
         { id: 'market', label: 'Market', ImageComp: Bag, path: '/' },
-        { id: 'wallet', label: 'Wallet', ImageComp: Wallet, path: '/wallet' },
+        // { id: 'wallet', label: 'Wallet', ImageComp: Wallet, path: '/wallet' },
     ]
 
     return (
