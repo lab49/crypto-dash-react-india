@@ -33,6 +33,7 @@
       @extend .block-card;
       flex-grow: 1;
       margin-left: 10px;
+      @import "../src/components/liveChart";
     }
 
     .quick-trade {
