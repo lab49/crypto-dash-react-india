@@ -49,10 +49,10 @@ export const TIME_INTERVAL = {
 export const QUICK_TRADE_TAB_CONFIG = [
     {
       id: "buyTab",
-      name: ORDER_TYPE.BUY,
+      name: ORDER_TYPE.BUY
     },
     {
       id: "sellTab",
-      name: ORDER_TYPE.SELL,
-    },
+      name: ORDER_TYPE.SELL
+    }
   ];

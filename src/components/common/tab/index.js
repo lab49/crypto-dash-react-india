@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Tabs = ({ activeTab, tabConfig, onTabClick }) => {
+const Tabs = ({ activeTab, tabConfig, onTabChange }) => {
 
   return (
     <div className="tabs">
@@ -8,7 +8,7 @@ const Tabs = ({ activeTab, tabConfig, onTabClick }) => {
         <button
           key={config.id}
           className={`tab btn-lg ${activeTab === config.id ? "active" : ""}`}
-          onClick={() => onTabClick(config.id)}
+          onClick={() => onTabChange(config.id)}
         >
           {config.name}
         </button>

@@ -10,9 +10,7 @@ import {
 import { LOCAL_STORAGE_KEY, ORDER_STATUS_MAPPING, ORDER_TYPE, TIME_INTERVAL } from "../src/constants/appConstants";
 
 const CryptoExchange = () => {
-  const [tradeHistory, setTradeHistory] = useState(
-    getDataFromLocalStorage(LOCAL_STORAGE_KEY.CURRENCY_TRADE_HISTORY)
-  );
+  const [tradeHistory, setTradeHistory] = useState(getDataFromLocalStorage(LOCAL_STORAGE_KEY.CURRENCY_TRADE_HISTORY));
 
   const [userWallet, setUserWallet] = useState(() => {
     const userAccountWallet = getDataFromLocalStorage(
